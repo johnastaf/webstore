@@ -1,8 +1,22 @@
 ﻿import * as React from "react";
 import { render } from 'react-dom'
-import Hello from './app'
+import App from './app'
+import { Store, createStore, compose, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import catalog from './catalog/catalogReducers'
+import IStoreState from "./store/configureStore";
+
+const store:Store<IStoreState> = createStore(
+  catalog,
+  compose(
+        applyMiddleware(thunk),
+  )
+);
 
 render(
-    <Hello />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('content')
 )
