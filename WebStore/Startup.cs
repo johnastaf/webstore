@@ -33,7 +33,7 @@ namespace WebStore
                 routes.MapRoute(
                     name: "DefaultApi",
                     template: "api/{controller}/{action}");
-                routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" }); // 2
+                routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
             });
         }
     }

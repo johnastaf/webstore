@@ -11,15 +11,15 @@ namespace WebStore.Controllers
     [Route("api/Phones")]
     public class PhonesController : Controller
     {
-        private static string[] Summaries = new[]
+        private static string[] Phones = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "iPhone 7 Plus", "Samsung Galaxy A5", "Xiaomi Mi 8"
         };
 
         [HttpGet("[action]")]
         public string[] GetPhones()
         {
-            return Summaries;
+            return Phones;
         }
     }
 }

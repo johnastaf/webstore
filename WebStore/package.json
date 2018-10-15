@@ -13,12 +13,17 @@
     "@types/react-dom": "^16.0.8",
     "@types/react-redux": "^6.0.9",
     "@types/react-router-dom": "^4.3.1",
+    "bootstrap": "^4.0.0-beta.2",
+    "css-loader": "^1.0.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.3.0"
+    "redux": "4.0.1",
+    "redux-thunk": "^2.3.0",
+    "style-loader": "^0.23.1"
   },
   "devDependencies": {
     "aspnet-webpack": "^2.0.3",
