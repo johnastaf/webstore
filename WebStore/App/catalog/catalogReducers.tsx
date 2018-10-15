@@ -9,7 +9,7 @@ const initialState: IStoreState = {
 export default function catalog(state = initialState, action: any) {
     switch (action.type) {
         case GET_PHONES_SUCCESS:
-            return { ...state, data: action.phones, error: '' }
+            return { ...state, phones: action.phones, error: '' }
 
         case GET_PHONES_ERROR:
             return { ...state, error: action.error }

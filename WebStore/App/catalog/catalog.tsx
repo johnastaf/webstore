@@ -13,13 +13,14 @@ interface MyProps {
 class Catalog extends React.Component<MyProps, {}> {
 
     componentDidMount() {
+        console.log("------componentDidMount");
         this.props.getPhones();
     }
 
     render() {
         let posts = this.props.phones.map(item => {
             return (
-                    <div>{item}</div>
+                <div key={item}>{item}</div>
             );
         });
 

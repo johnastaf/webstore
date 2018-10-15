@@ -5,6 +5,7 @@ import IStoreState from "../store/configureStore";
 import { fetch } from 'domain-task';
 
 export function receivePosts(data: any) {
+    console.log("------receivePosts: " + data);
     return {
         type: GET_PHONES_SUCCESS,
         phones: data
@@ -18,10 +19,10 @@ export function errorReceive(err: any) {
     }
 }
 export const getPhones = () => (dispatch: any) => {
-    fetch('api')
-        .then((response) => {
+    fetch('/api/Phones/GetPhones')
+        .then((response: any) => {
             return response.json()
-        }).then((data) => {
+        }).then((data: any) => {
             dispatch(receivePosts(data))
         }).catch((ex) => {
             dispatch(errorReceive(ex))
