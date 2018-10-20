@@ -14,7 +14,7 @@ export function receivePosts(data: any) {
 export function addPhoneToCart(phoneInCart: IPhoneInCart) {
     return {
         type: ADD_PHONE_TO_CART,
-        cart: [phoneInCart]
+        addedPhone: phoneInCart
     }
 }
 

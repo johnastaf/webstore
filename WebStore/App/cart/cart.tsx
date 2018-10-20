@@ -8,16 +8,11 @@ interface MyProps {
 
 
 class Cart extends React.Component<MyProps, {}> {
-    componentDidMount() {
-        console.log("----componentDidMount " + JSON.stringify(this.props.cart));
-        console.log("----componentDidMount " + this.props.cart.length);
-    }
-
     render() {
         let phonesInCart = this.props.cart.map(item => {
             return (
                 <div key={item.phone.name} >
-                    {item.phone.name}
+                    {item.phone.name} - {item.quantity}
                 </div>
             );
         });
