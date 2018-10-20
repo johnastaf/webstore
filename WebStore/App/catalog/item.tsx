@@ -13,10 +13,10 @@ interface MyProps {
 export class Item extends React.Component<MyProps, {}> {
     render() {
         return (
-            <div key={this.props.phone.name} className="row">
-                {this.props.phone.name}
-                {this.props.phone.price}
-                <button type="button" className="btn">Buy</button>
+            <div className="row" style={{ marginBottom: '10px' }}>
+                <div>{this.props.phone.name}</div>
+                <div style={{ marginLeft: '10px' }}>{this.props.phone.price}</div>
+                <button style={{ marginLeft: '10px' }} type="button" className="btn btn-success">Buy</button>
             </div>
         );
     }
