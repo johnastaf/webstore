@@ -12,6 +12,7 @@
     <None Remove="App\catalog\catalogActions.tsx" />
     <None Remove="App\catalog\catalogConstants.tsx" />
     <None Remove="App\catalog\catalogReducers.tsx" />
+    <None Remove="App\catalog\item.tsx" />
     <None Remove="App\header\header.tsx" />
     <None Remove="App\index.tsx" />
     <None Remove="App\store\configureStore.ts" />
@@ -33,6 +34,7 @@
     <TypeScriptCompile Include="App\catalog\catalogActions.tsx" />
     <TypeScriptCompile Include="App\catalog\catalogConstants.tsx" />
     <TypeScriptCompile Include="App\catalog\catalogReducers.tsx" />
+    <TypeScriptCompile Include="App\catalog\item.tsx" />
     <TypeScriptCompile Include="App\header\header.tsx" />
     <TypeScriptCompile Include="App\index.tsx" />
     <TypeScriptCompile Include="App\store\configureStore.ts" />

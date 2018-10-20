@@ -1,5 +1,5 @@
 ﻿import { GET_PHONES_SUCCESS, GET_PHONES_ERROR } from './catalogConstants'
-import IStoreState from "../store/configureStore";
+import { IStoreState } from "../store/configureStore";
 
 const initialState: IStoreState = {
     phones: [],

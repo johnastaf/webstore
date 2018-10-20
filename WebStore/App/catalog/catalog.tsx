@@ -3,10 +3,12 @@ import * as ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { getPhones } from './catalogActions'
 import { Dispatch, Action } from 'redux';
-import IStoreState from "../store/configureStore";
+import { IStoreState, IPhone } from "../store/configureStore";
+import { Item } from "./item";
+
 
 interface MyProps {
-    phones: string[];
+    phones: IPhone[];
     getPhones: () => void;
 }
 
@@ -19,15 +21,12 @@ class Catalog extends React.Component<MyProps, {}> {
     render() {
         let phones = this.props.phones.map(item => {
             return (
-                <div className="container" key={item}>
-                    {item}
-                    <button type="button" className="btn">Buy</button>
-                </div>
+                <Item phone={item} />
             );
         });
 
         return (
-            <div id="phones">
+            <div className="container">
                 {phones}
             </div>
         );

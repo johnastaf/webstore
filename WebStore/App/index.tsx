@@ -5,7 +5,7 @@ import { Store, createStore, compose, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import catalog from './catalog/catalogReducers'
-import IStoreState from "./store/configureStore";
+import { IStoreState } from "./store/configureStore";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store:Store<IStoreState> = createStore(
