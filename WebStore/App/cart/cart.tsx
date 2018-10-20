@@ -1,12 +1,39 @@
 ﻿import * as React from "react";
+import { IStoreState, IPhoneInCart } from "../store/configureStore";
+import { connect } from 'react-redux';
 
-export default class Cart extends React.Component {
+interface MyProps {
+    cart: IPhoneInCart[];
+}
+
+
+class Cart extends React.Component<MyProps, {}> {
+    componentDidMount() {
+        console.log("----componentDidMount " + JSON.stringify(this.props.cart));
+        console.log("----componentDidMount " + this.props.cart.length);
+    }
+
     render() {
+        let phonesInCart = this.props.cart.map(item => {
+            return (
+                <div key={item.phone.name} >
+                    {item.phone.name}
+                </div>
+            );
+        });
+
         return (
-            <div>
-                <h1>Cart</h1>
-                <button type="button" className="btn btn-danger">Action</button>
+            <div className="container">
+                {phonesInCart}
             </div>
         );
     }
 }
+
+let mapProps = (state: IStoreState) => {
+    return {
+        cart: state.cart
+    }
+}
+
+export default connect(mapProps, null)(Cart) 
