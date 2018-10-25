@@ -1,5 +1,5 @@
 ﻿import * as React from "react";
-import { IStoreState, IPhoneInCart } from "../store/configureStore";
+import { IPhoneInCart, IStoreState } from "../store/configureStore";
 import { connect } from 'react-redux';
 
 interface MyProps {
@@ -27,7 +27,7 @@ class Cart extends React.Component<MyProps, {}> {
 
 let mapProps = (state: IStoreState) => {
     return {
-        cart: state.cart
+        cart: state.cart.cart
     }
 }
 

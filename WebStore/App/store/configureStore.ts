@@ -1,11 +1,11 @@
 ﻿import { URL } from "url";
+import { ICatalogState } from "../catalog/catalogReducer";
+import { ICartState } from "../cart/cartReducer";
 
 export interface IStoreState {
-    phones: IPhone[];
-    cart: IPhoneInCart[];
-    error: string;
+    catalog: ICatalogState;
+    cart: ICartState;
 };
-
 
 export interface IPhone {
     name: string;

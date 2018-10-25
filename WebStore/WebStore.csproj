@@ -8,14 +8,16 @@
   <ItemGroup>
     <None Remove="App\app.tsx" />
     <None Remove="App\cart\cart.tsx" />
+    <None Remove="App\cart\cartReducer.ts" />
     <None Remove="App\catalog\catalog.tsx" />
-    <None Remove="App\catalog\catalogActions.tsx" />
-    <None Remove="App\catalog\catalogConstants.tsx" />
-    <None Remove="App\catalog\catalogReducers.tsx" />
+    <None Remove="App\catalog\catalogActions.ts" />
+    <None Remove="App\catalog\catalogConstants.ts" />
+    <None Remove="App\catalog\catalogReducer.ts" />
     <None Remove="App\catalog\item.tsx" />
     <None Remove="App\header\header.tsx" />
     <None Remove="App\index.tsx" />
     <None Remove="App\store\configureStore.ts" />
+    <None Remove="App\store\rootReducer.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,14 +32,16 @@
   <ItemGroup>
     <TypeScriptCompile Include="App\app.tsx" />
     <TypeScriptCompile Include="App\cart\cart.tsx" />
+    <TypeScriptCompile Include="App\cart\cartReducer.ts" />
     <TypeScriptCompile Include="App\catalog\catalog.tsx" />
-    <TypeScriptCompile Include="App\catalog\catalogActions.tsx" />
-    <TypeScriptCompile Include="App\catalog\catalogConstants.tsx" />
-    <TypeScriptCompile Include="App\catalog\catalogReducers.tsx" />
+    <TypeScriptCompile Include="App\catalog\catalogActions.ts" />
+    <TypeScriptCompile Include="App\catalog\catalogConstants.ts" />
+    <TypeScriptCompile Include="App\catalog\catalogReducer.ts" />
     <TypeScriptCompile Include="App\catalog\item.tsx" />
     <TypeScriptCompile Include="App\header\header.tsx" />
     <TypeScriptCompile Include="App\index.tsx" />
     <TypeScriptCompile Include="App\store\configureStore.ts" />
+    <TypeScriptCompile Include="App\store\rootReducer.ts" />
   </ItemGroup>
 
 </Project>

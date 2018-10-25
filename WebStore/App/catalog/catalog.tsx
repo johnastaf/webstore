@@ -3,10 +3,9 @@ import * as ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { getPhones, addPhoneToCart } from './catalogActions'
 import { Dispatch, Action } from 'redux';
-import { IStoreState, IPhone, IPhoneInCart } from "../store/configureStore";
+import { IPhone, IPhoneInCart, IStoreState } from "../store/configureStore";
 import { Item } from "./item";
 import { ADD_PHONE_TO_CART } from './catalogConstants'
-
 
 interface MyProps {
     phones: IPhone[];
@@ -37,8 +36,8 @@ class Catalog extends React.Component<MyProps, {}> {
 
 let mapProps = (state: IStoreState) => {
     return {
-        phones: state.phones,
-        error: state.error
+        phones: state.catalog.phones,
+        error: state.catalog.error
     }
 }
 
