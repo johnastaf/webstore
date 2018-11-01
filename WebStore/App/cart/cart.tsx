@@ -1,9 +1,13 @@
 ﻿import * as React from "react";
 import { IPhoneInCart, IStoreState } from "../store/configureStore";
 import { connect } from 'react-redux';
+import { CartItem } from "./cartItem";
+import { Dispatch, Action } from 'redux';
+import { removePhoneFromCart } from "./cartActions"
 
 interface MyProps {
     cart: IPhoneInCart[];
+    removePhoneFromCart: (phone: IPhoneInCart) => void;
 }
 
 
@@ -11,9 +15,7 @@ class Cart extends React.Component<MyProps, {}> {
     render() {
         let phonesInCart = this.props.cart.map(item => {
             return (
-                <div key={item.phone.name} >
-                    {item.phone.name} - {item.quantity}
-                </div>
+                <CartItem phoneInCart={item} key={item.phone.name} removePhoneFromCart={this.props.removePhoneFromCart} />
             );
         });
 
@@ -31,4 +33,10 @@ let mapProps = (state: IStoreState) => {
     }
 }
 
-export default connect(mapProps, null)(Cart) 
+const mapDispatchToProps = (dispatch: any) => ({
+    removePhoneFromCart: (phone: IPhoneInCart) => {
+        dispatch(removePhoneFromCart(phone));
+    }
+});
+
+export default connect(mapProps, mapDispatchToProps)(Cart) 

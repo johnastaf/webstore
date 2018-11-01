@@ -1,11 +1,12 @@
 ﻿import * as React from "react";
 import * as ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { getPhones, addPhoneToCart } from './catalogActions'
+import { getPhones } from './catalogActions'
+import { addPhoneToCart } from '../cart/cartActions'
 import { Dispatch, Action } from 'redux';
 import { IPhone, IPhoneInCart, IStoreState } from "../store/configureStore";
-import { Item } from "./item";
-import { ADD_PHONE_TO_CART } from './catalogConstants'
+import { CatalogItem } from "./catalogItem";
+import { ADD_PHONE_TO_CART } from '../cart/cartConstants'
 
 interface MyProps {
     phones: IPhone[];
@@ -22,7 +23,7 @@ class Catalog extends React.Component<MyProps, {}> {
     render() {
         let phones = this.props.phones.map(item => {
             return (
-                <Item phone={item} key={item.name} addPhoneToCart={this.props.addPhoneToCart}/>
+                <CatalogItem phone={item} key={item.name} addPhoneToCart={this.props.addPhoneToCart}/>
             );
         });
 

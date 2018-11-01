@@ -1,20 +1,13 @@
-﻿import { GET_PHONES_SUCCESS, GET_PHONES_ERROR, ADD_PHONE_TO_CART } from './catalogConstants'
+﻿import { GET_PHONES_SUCCESS, GET_PHONES_ERROR } from './catalogConstants'
 import "isomorphic-fetch"
 import { Dispatch } from 'redux';
-import { IStoreState, IPhone, IPhoneInCart } from "../store/configureStore";
+import { IStoreState, IPhone } from "../store/configureStore";
 import { fetch } from 'domain-task';
 
 export function receivePosts(data: any) {
     return {
         type: GET_PHONES_SUCCESS,
         phones: data
-    }
-}
-
-export function addPhoneToCart(phoneInCart: IPhoneInCart) {
-    return {
-        type: ADD_PHONE_TO_CART,
-        addedPhone: phoneInCart
     }
 }
 

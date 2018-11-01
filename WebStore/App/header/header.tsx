@@ -4,15 +4,11 @@ import { IPhoneInCart, IStoreState } from "../store/configureStore";
 import { connect } from 'react-redux';
 
 interface MyProps {
-    cart: IPhoneInCart[];
+    totalCount: number;
 }
 
 class Header extends React.Component<MyProps, {}> {
     render() {
-        const reducer = (accumulator: number, currentValue: IPhoneInCart) => accumulator + currentValue.quantity;
-
-        let countPhonesInCart: number = this.props.cart.reduce(reducer, 0);
-
         return (
             <header>
                 <menu>
@@ -21,7 +17,7 @@ class Header extends React.Component<MyProps, {}> {
                             <Link to="/">Catalog</Link>
                         </li>
                         <li>
-                            <Link to="/cart">Cart ({countPhonesInCart})</Link>
+                            <Link to="/cart">Cart ({this.props.totalCount})</Link>
                         </li>
                     </ul>
                 </menu>
@@ -32,7 +28,7 @@ class Header extends React.Component<MyProps, {}> {
 
 let mapProps = (state: IStoreState) => {
     return {
-        cart: state.cart.cart
+        totalCount: state.cart.totalCount
     }
 }
 
