@@ -4,14 +4,14 @@ import { Dispatch } from 'redux';
 import { IStoreState, IPhone } from "../store/configureStore";
 import { fetch } from 'domain-task';
 
-export const createPhone = (phone: IPhone) => (dispatch: any) => {
+export const createPhone = (name: string, price: number) => (dispatch: any) => {
     fetch('/api/Phones/CreatePhone', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        body: JSON.stringify({ "name": "iPhone 7 Plus", "price": 60000, "image": null })
+        body: JSON.stringify({ "name": name, "price": price, "image": null })
     }).then((response: any) => {
         return response.json()
     });

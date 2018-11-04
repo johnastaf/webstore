@@ -4,18 +4,19 @@ import { connect } from 'react-redux';
 import { createPhone } from './adminActions'
 import { Dispatch, Action } from 'redux';
 import { IPhone, IPhoneInCart, IStoreState } from "../store/configureStore";
+import { CreatePhone } from "./createPhone";
 
 
 interface MyProps {
     phones: IPhone[];
-    createPhone: (phone: IPhone) => void;
+    createPhone: (name: string, price: number) => void;
 }
 
 class Admin extends React.Component<MyProps, {}> {
     render() {
         return (
             <div>
-                Admin panel
+                <CreatePhone createPhone={this.props.createPhone}/>
             </div>
         );
     }
@@ -29,8 +30,8 @@ let mapProps = (state: IStoreState) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-    createPhone: (phone: IPhone) => {
-        dispatch(createPhone(phone));
+    createPhone: (name: string, price: number) => {
+        dispatch(createPhone(name, price));
     }
 });
 
