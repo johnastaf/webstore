@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="App\admin\admin.tsx" />
+    <None Remove="App\admin\adminActions.ts" />
+    <None Remove="App\admin\adminConstants.ts" />
+    <None Remove="App\admin\adminReducer.ts" />
     <None Remove="App\app.tsx" />
     <None Remove="App\cart\cart.tsx" />
     <None Remove="App\cart\cartActions.ts" />
@@ -24,15 +28,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
   </ItemGroup>
-
+	<ItemGroup>
+	   <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+	   <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" /> 
+	</ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="App\admin\admin.tsx" />
+    <TypeScriptCompile Include="App\admin\adminActions.ts" />
+    <TypeScriptCompile Include="App\admin\adminConstants.ts" />
+    <TypeScriptCompile Include="App\admin\adminReducer.ts" />
     <TypeScriptCompile Include="App\app.tsx" />
     <TypeScriptCompile Include="App\cart\cartItem.tsx" />
     <TypeScriptCompile Include="App\cart\cart.tsx" />

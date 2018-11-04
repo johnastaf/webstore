@@ -17,6 +17,9 @@ class Header extends React.Component<MyProps, {}> {
                             <Link to="/">Catalog</Link>
                         </li>
                         <li>
+                            <Link to="/admin">Admin</Link>
+                        </li>
+                        <li>
                             <Link to="/cart">Cart ({this.props.totalCount})</Link>
                         </li>
                     </ul>
