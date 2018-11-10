@@ -7,6 +7,7 @@ import thunk from 'redux-thunk'
 import { rootReducer } from './store/rootReducer'
 import { IStoreState } from "./store/configureStore";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/js/src/collapse';
 
 const store:Store<IStoreState> = createStore(
     rootReducer,

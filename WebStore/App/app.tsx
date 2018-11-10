@@ -12,7 +12,7 @@ export default class App extends React.Component {
             <Router>
                 <div>
                     <Header />
-                    <main>
+                    <main className="container" style={{ marginTop: '10px' }}>
                         <Switch>
                             <Route path="/cart" component={Cart} />
                             <Route path="/admin" component={Admin} />
