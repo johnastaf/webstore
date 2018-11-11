@@ -1,10 +1,12 @@
 ﻿import { URL } from "url";
 import { ICatalogState } from "../catalog/catalogReducer";
 import { ICartState } from "../cart/cartReducer";
+import { IAdminState } from "../admin/adminReducer";
 
 export interface IStoreState {
     catalog: ICatalogState;
     cart: ICartState;
+    admin: IAdminState;
 };
 
 export interface IPhone {

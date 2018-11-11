@@ -4,6 +4,14 @@ import { Dispatch } from 'redux';
 import { IStoreState, IPhone } from "../store/configureStore";
 import { fetch } from 'domain-task';
 import { getPhones } from '../catalog/catalogActions'
+import { SELECT_PHONE } from './adminConstants'
+
+export function selectPhone(phone: IPhone) {
+    return {
+        type: SELECT_PHONE,
+        selectedPhone: phone
+    }
+}
 
 export const createPhone = (name: string, price: number) => (dispatch: any) => {
     console.log(name + " ---   " + price);

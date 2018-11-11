@@ -4,20 +4,49 @@ import { IPhone } from "../store/configureStore";
 
 interface MyProps {
     phone: IPhone;
+    selectedItem: IPhone;
     removePhone: (id: number) => void;
+    selectPhone: (phone: IPhone) => void;
 }
 
 export class EditItem extends React.Component<MyProps, {}> {
+    componentDidMount() {
+        console.log("---------->componentDidMount" );
+    }
+
+    shouldComponentUpdate(nextProps: MyProps, nextState: MyProps): boolean {
+
+        console.log("---------->" + nextProps.selectedItem.name);
+        if (nextProps.selectedItem.id == this.props.phone.id) {
+            this.refs.phoneItem.classList.add('active');
+        } else {
+            this.refs.phoneItem.classList.remove('active');
+        }
+
+        return true;
+    }
+
+    public refs: {
+        phoneItem: HTMLInputElement;
+    };
+
+    clickOnItem = () => {
+        this.props.selectPhone(this.props.phone);
+        this.refs.phoneItem.classList.add('active');
+    }
+
     render() {
         return (
-            <div className="row" style={{ marginBottom: '10px' }}>
-                <div>{this.props.phone.name}</div>
-                <div style={{ marginLeft: '10px' }}>{this.props.phone.price}</div>
-                <button style={{ marginLeft: '10px' }} type="button" className="btn btn-danger"
-                    onClick={() => { this.props.removePhone(this.props.phone.id) }}>
-                    Remove from db
+            <li ref="phoneItem" className="list-group-item" onClick={this.clickOnItem}>
+                <div className="row">
+                    <div>{this.props.phone.name}</div>
+                    <div style={{ marginLeft: '10px' }}>{this.props.phone.price}</div>
+                    <button style={{ marginLeft: '10px' }} type="button" className="btn btn-danger"
+                        onClick={() => { this.props.removePhone(this.props.phone.id) }}>
+                        Remove from db
                  </button>
-            </div>
+                </div>
+            </li >
         );
     }
 };
