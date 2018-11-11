@@ -37,8 +37,7 @@ class Catalog extends React.Component<MyProps, {}> {
 
 let mapProps = (state: IStoreState) => {
     return {
-        phones: state.catalog.phones,
-        error: state.catalog.error
+        phones: state.catalog.phones
     }
 }
 

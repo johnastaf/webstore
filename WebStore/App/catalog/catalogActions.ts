@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { IStoreState, IPhone } from "../store/configureStore";
 import { fetch } from 'domain-task';
 
-export function receivePosts(data: any) {
+export function receivePhones(data: any) {
     return {
         type: GET_PHONES_SUCCESS,
         phones: data
@@ -23,7 +23,7 @@ export const getPhones = () => (dispatch: any) => {
         .then((response: any) => {
             return response.json()
         }).then((data: any) => {
-            dispatch(receivePosts(data))
+            dispatch(receivePhones(data))
         }).catch((ex) => {
             dispatch(errorReceive(ex))
         });

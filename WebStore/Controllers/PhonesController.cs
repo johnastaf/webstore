@@ -40,5 +40,20 @@ namespace WebStore
 
             return "Success!!!";
         }
+
+        [HttpGet("[action]/{id}")]
+        public string RemovePhone(string id)
+        {
+            Phone phone = _context.Phones.FirstOrDefault(p => p.Id == Int32.Parse(id));
+            if (phone != null)
+            {
+                _context.Phones.Remove(phone);
+                _context.SaveChanges();
+
+                return "Removed " + id;
+            }
+
+            return "Not removed" + id;
+        }
     }
 }
