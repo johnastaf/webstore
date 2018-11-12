@@ -55,5 +55,22 @@ namespace WebStore
 
             return "Not removed" + id;
         }
+
+
+        [HttpPost("[action]")]
+        public string UpdatePhone([FromBody]Phone phone)
+        {
+            Phone ph = _context.Phones.FirstOrDefault(p => p.Id == phone.Id);
+            if (ph != null)
+            {
+                ph.Name = phone.Name;
+                ph.Price = phone.Price;
+                _context.SaveChanges();
+
+                return "Updated";
+            }
+
+            return "Not update";
+        }
     }
 }

@@ -44,3 +44,22 @@ export const removePhone = (id: number) => (dispatch: any) => {
             console.log(">>> err " + ex);
         });
 };
+
+export const updatePhone = (id: number, name: string, price: number) => (dispatch: any) => {
+    console.log(name + " ---   " + price);
+    fetch('/api/Phones/UpdatePhone', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({ "id" : id, "name": name, "price": price, "image": null })
+    }).then((response: any) => {
+        return response.json()
+    }).then((data: any) => {
+        console.log(">>> suc " + data);
+        dispatch(getPhones());
+    }).catch((ex) => {
+        console.log(">>> err " + ex);
+    });
+};

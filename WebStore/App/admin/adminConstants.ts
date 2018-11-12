@@ -1,2 +1,3 @@
 ﻿export const CREATE_PHONE = 'CREATE_PHONE'
 export const SELECT_PHONE = 'SELECT_PHONE'
+export const UPDATE_PHONE = 'UPDATE_PHONE'

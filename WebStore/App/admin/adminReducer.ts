@@ -14,7 +14,6 @@ export interface IAdminState {
 export const admin: Reducer<IAdminState> = (state: IAdminState = initialState, action: any) => {
     switch (action.type) {
         case SELECT_PHONE:
-            console.log("---selected: " + action.selectedPhone);
 
             return { ...state, selectedPhone: action.selectedPhone }
 
