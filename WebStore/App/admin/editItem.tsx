@@ -16,8 +16,7 @@ export class EditItem extends React.Component<MyProps, {}> {
 
     shouldComponentUpdate(nextProps: MyProps, nextState: MyProps): boolean {
 
-        console.log("---------->" + nextProps.selectedItem.name);
-        if (nextProps.selectedItem.id == this.props.phone.id) {
+        if (nextProps.selectedItem!= null && nextProps.selectedItem.id == this.props.phone.id) {
             this.refs.phoneItem.classList.add('active');
         } else {
             this.refs.phoneItem.classList.remove('active');

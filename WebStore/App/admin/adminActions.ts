@@ -58,6 +58,7 @@ export const updatePhone = (id: number, name: string, price: number) => (dispatc
         return response.json()
     }).then((data: any) => {
         console.log(">>> suc " + data);
+        dispatch(selectPhone(null));
         dispatch(getPhones());
     }).catch((ex) => {
         console.log(">>> err " + ex);
