@@ -14,7 +14,6 @@ export function selectPhone(phone: IPhone) {
 }
 
 export const createPhone = (name: string, price: number) => (dispatch: any) => {
-    console.log(name + " ---   " + price);
     fetch('/api/Phones/CreatePhone', {
         method: 'POST',
         headers: {
@@ -47,7 +46,6 @@ export const removePhone = (id: number) => (dispatch: any) => {
 };
 
 export const updatePhone = (id: number, name: string, price: number) => (dispatch: any) => {
-    console.log(name + " ---   " + price);
     fetch('/api/Phones/UpdatePhone', {
         method: 'POST',
         headers: {

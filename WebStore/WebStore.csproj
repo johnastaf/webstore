@@ -19,6 +19,7 @@
     <None Remove="App\cart\cartConstants.ts" />
     <None Remove="App\cart\cartItem.tsx" />
     <None Remove="App\cart\cartReducer.ts" />
+    <None Remove="App\cart\createOrder.tsx" />
     <None Remove="App\catalog\catalog.tsx" />
     <None Remove="App\catalog\catalogActions.ts" />
     <None Remove="App\catalog\catalogConstants.ts" />
@@ -31,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
@@ -59,6 +59,7 @@
     <TypeScriptCompile Include="App\cart\cartActions.ts" />
     <TypeScriptCompile Include="App\cart\cartConstants.ts" />
     <TypeScriptCompile Include="App\cart\cartReducer.ts" />
+    <TypeScriptCompile Include="App\cart\createOrder.tsx" />
     <TypeScriptCompile Include="App\catalog\catalog.tsx" />
     <TypeScriptCompile Include="App\catalog\catalogActions.ts" />
     <TypeScriptCompile Include="App\catalog\catalogConstants.ts" />

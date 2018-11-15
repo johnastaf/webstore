@@ -20,3 +20,12 @@ export interface IPhoneInCart {
     phone: IPhone;
     quantity: number;
 }
+
+export interface IOrder {
+    date: Date;
+    total: number;
+    name: string;
+    address: string;
+    items: IPhoneInCart[];
+}
+
