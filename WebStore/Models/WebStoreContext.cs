@@ -13,13 +13,9 @@ namespace WebStore.Models
 
         public DbSet<Phone> Phones { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
 
-        /*
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=webstore.db");
-        }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
-    */
     }
 }

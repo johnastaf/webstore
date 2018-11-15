@@ -4,14 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebStore
 {
-    public class Phone
+    public class OrderItem
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [ForeignKey("OrderItem")]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public Phone Phone { get; set; }
+        public int Quntity { get; set; }
         public int Price { get; set; }
-        public string Image { get; set; }
     }
 }
