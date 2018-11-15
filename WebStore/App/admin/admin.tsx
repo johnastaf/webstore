@@ -19,10 +19,6 @@ interface MyProps {
 }
 
 class Admin extends React.Component<MyProps, {}> {
-    componentDidMount() {
-        console.log("=====sel: " + this.props.selectedItem);
-    }
-
     componentWillUnmount() {
         this.props.selectPhone(null);
     }

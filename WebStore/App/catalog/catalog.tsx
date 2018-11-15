@@ -28,7 +28,7 @@ class Catalog extends React.Component<MyProps, {}> {
         });
 
         return (
-            <div className="container">
+            <div className="row">
                 {phones}
             </div>
         );

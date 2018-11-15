@@ -10,10 +10,6 @@ interface MyProps {
 }
 
 export class EditItem extends React.Component<MyProps, {}> {
-    componentDidMount() {
-        console.log("---------->componentDidMount" );
-    }
-
     shouldComponentUpdate(nextProps: MyProps, nextState: MyProps): boolean {
 
         if (nextProps.selectedItem!= null && nextProps.selectedItem.id == this.props.phone.id) {
