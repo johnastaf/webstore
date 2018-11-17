@@ -1,4 +1,4 @@
-﻿import { ADD_PHONE_TO_CART, REMOVE_PHONE_FROM_CART } from '../cart/cartConstants'
+﻿import { ADD_PHONE_TO_CART, REMOVE_PHONE_FROM_CART, CLEAN_CART } from '../cart/cartConstants'
 import { IPhoneInCart } from "../store/configureStore";
 import { Action, Reducer } from 'redux';
 
@@ -43,6 +43,9 @@ export const cart: Reducer<ICartState> = (state: ICartState = initialState, acti
             }
 
             return state;
+
+        case CLEAN_CART:
+            return { ...state, cart: [], totalCount: 0 }
 
         default:
             return state;

@@ -12,6 +12,8 @@
     <None Remove="App\admin\adminReducer.ts" />
     <None Remove="App\admin\createPhone.tsx" />
     <None Remove="App\admin\editItem.tsx" />
+    <None Remove="App\admin\order.tsx" />
+    <None Remove="App\admin\orderItem.tsx" />
     <None Remove="App\admin\updatePhone.tsx" />
     <None Remove="App\app.tsx" />
     <None Remove="App\cart\cart.tsx" />
@@ -52,6 +54,8 @@
     <TypeScriptCompile Include="App\admin\adminReducer.ts" />
     <TypeScriptCompile Include="App\admin\createPhone.tsx" />
     <TypeScriptCompile Include="App\admin\editItem.tsx" />
+    <TypeScriptCompile Include="App\admin\order.tsx" />
+    <TypeScriptCompile Include="App\admin\orderItem.tsx" />
     <TypeScriptCompile Include="App\admin\updatePhone.tsx" />
     <TypeScriptCompile Include="App\app.tsx" />
     <TypeScriptCompile Include="App\cart\cartItem.tsx" />

@@ -2,6 +2,8 @@
 import { Link } from 'react-router-dom';
 import { IPhoneInCart, IStoreState } from "../store/configureStore";
 import { connect } from 'react-redux';
+import 'bootstrap/js/src/collapse';
+import 'bootstrap/js/src/dropdown';
 
 interface MyProps {
     totalCount: number;
@@ -21,9 +23,16 @@ class Header extends React.Component<MyProps, {}> {
                         <li className="nav-item">
                             <Link className="nav-link" to="/">Catalog</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/admin">Admin</Link>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                             </a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link className="dropdown-item" to="/admin">Products</Link>
+                                <Link className="dropdown-item" to="/order">Orders</Link>
+                            </div>
                         </li>
+
                         <li className="nav-item">
                             <Link className="nav-link" to="/cart">Cart ({this.props.totalCount})</Link>
                         </li>

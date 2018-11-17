@@ -1,4 +1,4 @@
-﻿import { ADD_PHONE_TO_CART, REMOVE_PHONE_FROM_CART } from '../cart/cartConstants'
+﻿import { ADD_PHONE_TO_CART, REMOVE_PHONE_FROM_CART, CLEAN_CART } from '../cart/cartConstants'
 import { IPhoneInCart, IOrder } from "../store/configureStore";
 
 export function addPhoneToCart(phoneInCart: IPhoneInCart) {
@@ -12,6 +12,12 @@ export function removePhoneFromCart(phoneInCart: IPhoneInCart) {
     return {
         type: REMOVE_PHONE_FROM_CART,
         removedPhone: phoneInCart
+    }
+}
+
+export function cleanCart() {
+    return {
+        type: CLEAN_CART
     }
 }
 

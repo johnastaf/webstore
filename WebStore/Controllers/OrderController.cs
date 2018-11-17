@@ -41,7 +41,24 @@ namespace WebStore
             //var zz1 = _context.OrderItems.ToList();
             //var tt = _context.Orders.FirstOrDefault().Items;
 
-            return _context.Orders.ToList();
+            var orders = _context.Orders.ToList();
+
+            var itemzz = _context.OrderItems.ToList();
+
+            var phones = _context.Phones.ToList();
+
+            //foreach (var order in orders)
+            //{
+            //    var items = _context.OrderItems.ToList();
+
+            //    foreach (var item in items)
+            //    {
+            //        var ph = item.Phone;
+
+            //    }
+            //}
+
+            return orders;
         }
 
         [HttpPost("[action]")]
@@ -50,10 +67,10 @@ namespace WebStore
             foreach(OrderItem itemOrder in order.Items)
             {
                 itemOrder.Price = itemOrder.Phone.Price;
-                itemOrder.Phone = null;
+                itemOrder.Phone = _context.Phones.FirstOrDefault( p => p.Id == itemOrder.Phone.Id);
             }
 
-             _context.OrderItems.AddRange(order.Items);
+           //  _context.OrderItems.AddRange(order.Items);
             _context.Orders.Add(order);
             _context.SaveChanges();
 

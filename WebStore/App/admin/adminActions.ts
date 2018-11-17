@@ -1,4 +1,4 @@
-﻿import { CREATE_PHONE } from './adminConstants'
+﻿import { CREATE_PHONE, GET_ORDERS_SUCCESS } from './adminConstants'
 import "isomorphic-fetch"
 import { Dispatch } from 'redux';
 import { IStoreState, IPhone } from "../store/configureStore";
@@ -13,6 +13,25 @@ export function selectPhone(phone: IPhone) {
     }
 }
 
+export function receiveOrders(data: any) {
+    return {
+        type: GET_ORDERS_SUCCESS,
+        orders: data
+    }
+}
+
+export const getOrders = () => (dispatch: any) => {
+    fetch('/api/Order/GetOrders')
+        .then((response: any) => {
+            return response.json()
+        }).then((data: any) => {
+            console.log(">>> suc " + data);
+            dispatch(receiveOrders(data))
+        }).catch((ex) => {
+            console.log(">>> err " + ex);
+        });
+};
+
 export const createPhone = (name: string, price: number) => (dispatch: any) => {
     fetch('/api/Phones/CreatePhone', {
         method: 'POST',
@@ -25,6 +44,7 @@ export const createPhone = (name: string, price: number) => (dispatch: any) => {
         return response.json()
     }).then((data: any) => {
         console.log(">>> suc " + data);
+        // TODO : change to get from reducer
         dispatch(getPhones());
     }).catch((ex) => {
         console.log(">>> err " + ex);

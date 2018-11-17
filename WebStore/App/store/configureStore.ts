@@ -22,6 +22,7 @@ export interface IPhoneInCart {
 }
 
 export interface IOrder {
+    id: number;
     date: Date;
     total: number;
     name: string;

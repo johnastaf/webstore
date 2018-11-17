@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { CartItem } from "./cartItem";
 import { CreateOrder } from "./createOrder";
 import { Dispatch, Action } from 'redux';
-import { removePhoneFromCart, createOrder } from "./cartActions"
+import { removePhoneFromCart, createOrder, cleanCart } from "./cartActions"
 
 interface MyProps {
     cart: IPhoneInCart[];
     removePhoneFromCart: (phone: IPhoneInCart) => void;
     createOrder: (order: IOrder) => void;
+    cleanCart: () => void;
 }
 
 
@@ -24,7 +25,8 @@ class Cart extends React.Component<MyProps, {}> {
         return (
             <div className="container">
                 {phonesInCart}
-                <CreateOrder items={this.props.cart} createOrder={this.props.createOrder}/>
+                {this.props.cart.length > 0 && <CreateOrder items={this.props.cart} createOrder={this.props.createOrder} cleanCart={this.props.cleanCart} />}
+                {this.props.cart.length ==  0 && "The cart is empty"}
             </div>
         );
     }
@@ -42,6 +44,9 @@ const mapDispatchToProps = (dispatch: any) => ({
     },
     createOrder: (order: IOrder) => {
         dispatch(createOrder(order));
+    },
+    cleanCart: () => {
+        dispatch(cleanCart());
     }
 });
 

@@ -5,6 +5,7 @@ import { IPhoneInCart, IOrder } from "../store/configureStore";
 interface MyProps {
     items: IPhoneInCart[];
     createOrder: (order: IOrder) => void;
+    cleanCart: () => void;
 }
 
 export class CreateOrder extends React.Component<MyProps, {}> {
@@ -14,18 +15,20 @@ export class CreateOrder extends React.Component<MyProps, {}> {
     };
 
     createOrder = () => {
-        console.log(" --------- createOrder");
         var today = new Date();
 
         let order: IOrder = {
+            id: 0,
             date: today,
             total: 500,
-            name: "John",
-            address: "NY",
+            name: this.refs.nameOrder.value,
+            address: this.refs.addressOrder.value,
             items: this.props.items
         }
 
         this.props.createOrder(order);
+
+        this.props.cleanCart();
     }
 
     render() {

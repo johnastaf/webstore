@@ -5,6 +5,7 @@ import Header from './header/header';
 import Cart from './cart/cart';
 import Catalog from './catalog/catalog';
 import Admin from './admin/admin';
+import Order from './admin/order';
 
 export default class App extends React.Component {
     render() {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
                         <Switch>
                             <Route path="/cart" component={Cart} />
                             <Route path="/admin" component={Admin} />
+                            <Route path="/order" component={Order} />
                             <Route path="/" component={Catalog} />
                         </Switch>
                     </main>
