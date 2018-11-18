@@ -1,4 +1,4 @@
-﻿import { GET_PHONES_SUCCESS, GET_PHONES_ERROR } from './catalogConstants'
+﻿import { GET_PHONES_SUCCESS, GET_PHONES_ERROR, SEARCH_PHONES } from './catalogConstants'
 import "isomorphic-fetch"
 import { Dispatch } from 'redux';
 import { IStoreState, IPhone } from "../store/configureStore";
@@ -8,6 +8,13 @@ export function receivePhones(data: any) {
     return {
         type: GET_PHONES_SUCCESS,
         phones: data
+    }
+}
+
+export function searchPhones(query: string) {
+    return {
+        type: SEARCH_PHONES,
+        query: query
     }
 }
 
