@@ -23,7 +23,9 @@ export class CreateOrder extends React.Component<MyProps, {}> {
             total: 500,
             name: this.refs.nameOrder.value,
             address: this.refs.addressOrder.value,
-            items: this.props.items
+            items: this.props.items.map((it) => {
+                return { ...it, price: it.phone.price };
+            })
         }
 
         this.props.createOrder(order);

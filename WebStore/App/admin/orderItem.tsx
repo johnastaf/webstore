@@ -11,7 +11,7 @@ export class OrderItem extends React.Component<MyProps, {}> {
         let phonesInOrder = this.props.order.items.map(item => {
             return (
                 <div className="list-group-item" key={item.phone.id}>
-                    Model: {item.phone.name} Price: {item.phone.price} Quantity: {item.quantity}
+                    Model: {item.phone.name} Price: {item.price} Quantity: {item.quantity}
                 </div>
             );
         });
@@ -31,21 +31,6 @@ export class OrderItem extends React.Component<MyProps, {}> {
                     </div>
                 </div>
             </div>
-
-            //<div className="panel panel-default">
-            //    <a className="list-group-item" data-toggle="collapse" href="#collapseTC001A">
-            //        <span className="badge">4</span>
-            //        TC001A
-            //   </a>
-            //    <div className="panel-collapse collapse" id="collapseTC001A">
-            //        <div className="panel-body">
-            //            <a href="#" className="list-group-item">4</a>
-            //            <a href="#" className="list-group-item">3</a>
-            //            <a href="#" className="list-group-item">2</a>
-            //            <a href="#" className="list-group-item">1</a>
-            //        </div>
-            //    </div>
-            //</div>
         );
     }
 };

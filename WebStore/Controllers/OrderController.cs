@@ -66,7 +66,6 @@ namespace WebStore
         {
             foreach(OrderItem itemOrder in order.Items)
             {
-                itemOrder.Price = itemOrder.Phone.Price;
                 itemOrder.Phone = _context.Phones.FirstOrDefault( p => p.Id == itemOrder.Phone.Id);
             }
 

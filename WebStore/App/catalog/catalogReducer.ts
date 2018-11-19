@@ -23,6 +23,7 @@ export const catalog: Reducer<ICatalogState> = (state: ICatalogState = initialSt
             return { ...state, phones: state.phones.filter(p => p.name.includes(action.query))}
 
         case GET_PHONES_ERROR:
+            alert('ERROR: ' + action.error);
             return { ...state, error: action.error }
 
         default:

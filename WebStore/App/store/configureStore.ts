@@ -21,12 +21,16 @@ export interface IPhoneInCart {
     quantity: number;
 }
 
+export interface IPhoneInOrder extends IPhoneInCart{
+    price: number;
+}
+
 export interface IOrder {
     id: number;
     date: Date;
     total: number;
     name: string;
     address: string;
-    items: IPhoneInCart[];
+    items: IPhoneInOrder[];
 }
 

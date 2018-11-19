@@ -3,7 +3,7 @@ import "isomorphic-fetch"
 import { Dispatch } from 'redux';
 import { IStoreState, IPhone } from "../store/configureStore";
 import { fetch } from 'domain-task';
-import { getPhones } from '../catalog/catalogActions'
+import { getPhones, errorReceive } from '../catalog/catalogActions'
 import { SELECT_PHONE } from './adminConstants'
 
 export function selectPhone(phone: IPhone) {
@@ -57,10 +57,15 @@ export const removePhone = (id: number) => (dispatch: any) => {
         .then((response: any) => {
             return response.json()
         }).then((data: any) => {
-            console.log(">>> suc " + data);
-            dispatch(selectPhone(null));
-            dispatch(getPhones());
+            console.log(JSON.stringify(data));
+            console.log(">>> suc " + data.statusCode);
+            if (data.statusCode == 200) {
+                dispatch(selectPhone(null));
+                // TODO : change to get from reducer
+                dispatch(getPhones());
+            } else dispatch(errorReceive("Can not remove this product. It is used."));
         }).catch((ex) => {
+            dispatch(errorReceive(ex));
             console.log(">>> err " + ex);
         });
 };

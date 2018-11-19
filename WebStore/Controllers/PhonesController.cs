@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -42,18 +44,23 @@ namespace WebStore
         }
 
         [HttpGet("[action]/{id}")]
-        public string RemovePhone(string id)
+        public HttpResponseMessage RemovePhone(string id)
         {
             Phone phone = _context.Phones.FirstOrDefault(p => p.Id == Int32.Parse(id));
             if (phone != null)
             {
-                _context.Phones.Remove(phone);
-                _context.SaveChanges();
-
-                return "Removed " + id;
+                try
+                {
+                    _context.Phones.Remove(phone);
+                    _context.SaveChanges();
+                }
+                catch(System.Exception ex)
+                {
+                    return new HttpResponseMessage(HttpStatusCode.NotFound);
+                }
             }
 
-            return "Not removed" + id;
+            return new HttpResponseMessage(HttpStatusCode.OK); 
         }
 
 

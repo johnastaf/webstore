@@ -24,7 +24,10 @@ class Cart extends React.Component<MyProps, {}> {
 
         return (
             <div className="container">
-                {phonesInCart}
+                <ul className="list-group list-group-flush">
+                    {phonesInCart}
+                </ul>
+                <br/>
                 {this.props.cart.length > 0 && <CreateOrder items={this.props.cart} createOrder={this.props.createOrder} cleanCart={this.props.cleanCart} />}
                 {this.props.cart.length ==  0 && "The cart is empty"}
             </div>
