@@ -22,11 +22,16 @@ class Cart extends React.Component<MyProps, {}> {
             );
         });
 
+        const reducer = (accumulator: number, currentValue: IPhoneInCart) => accumulator + currentValue.quantity * currentValue.phone.price;
+        let total: number = this.props.cart.reduce(reducer, 0);
+
         return (
             <div className="container">
                 <ul className="list-group list-group-flush">
                     {phonesInCart}
                 </ul>
+                <br />
+                {this.props.cart.length > 0 && <div>Total: {total}$</div>}
                 <br/>
                 {this.props.cart.length > 0 && <CreateOrder items={this.props.cart} createOrder={this.props.createOrder} cleanCart={this.props.cleanCart} />}
                 {this.props.cart.length ==  0 && "The cart is empty"}
