@@ -1,10 +1,9 @@
-﻿import { CREATE_PHONE, GET_ORDERS_SUCCESS } from './adminConstants'
+﻿import { CREATE_PHONE, GET_ORDERS_SUCCESS, SELECT_PHONE } from '../store/constants'
 import "isomorphic-fetch"
 import { Dispatch } from 'redux';
 import { IStoreState, IPhone } from "../store/configureStore";
 import { fetch } from 'domain-task';
 import { getPhones, errorReceive } from '../catalog/catalogActions'
-import { SELECT_PHONE } from './adminConstants'
 
 export function selectPhone(phone: IPhone) {
     return {
@@ -25,7 +24,7 @@ export const getOrders = () => (dispatch: any) => {
         .then((response: any) => {
             return response.json()
         }).then((data: any) => {
-            console.log(">>> suc " + data);
+            console.log(">>> suc orders" + data);
             dispatch(receiveOrders(data))
         }).catch((ex) => {
             console.log(">>> err " + ex);

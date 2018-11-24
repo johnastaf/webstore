@@ -1,4 +1,4 @@
-﻿import { ADD_PHONE_TO_CART, REMOVE_PHONE_FROM_CART, CLEAN_CART } from '../cart/cartConstants'
+﻿import { ADD_PHONE_TO_CART, REMOVE_PHONE_FROM_CART, CLEAN_CART } from '../store/constants'
 import { IPhoneInCart } from "../store/configureStore";
 import { Action, Reducer } from 'redux';
 
@@ -21,7 +21,7 @@ export const cart: Reducer<ICartState> = (state: ICartState = initialState, acti
         case ADD_PHONE_TO_CART:
             countPhonesInCart = state.cart.reduce(reducer, 1);
 
-            index = state.cart.findIndex(p => p.phone.name === action.addedPhone.phone.name);
+            index = state.cart.findIndex(p => p.phone.id === action.addedPhone.phone.id);
 
             if (index > -1) {
                 state.cart[index].quantity = state.cart[index].quantity + 1;

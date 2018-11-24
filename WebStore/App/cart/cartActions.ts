@@ -1,4 +1,4 @@
-﻿import { ADD_PHONE_TO_CART, REMOVE_PHONE_FROM_CART, CLEAN_CART } from '../cart/cartConstants'
+﻿import { ADD_PHONE_TO_CART, REMOVE_PHONE_FROM_CART, CLEAN_CART } from '../store/constants'
 import { IPhoneInCart, IOrder } from "../store/configureStore";
 
 export function addPhoneToCart(phoneInCart: IPhoneInCart) {
@@ -30,7 +30,6 @@ export const createOrder = (order: IOrder) => (dispatch: any) => {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        //body: JSON.stringify({ "order": order })
         body: JSON.stringify({ "address": order.address, "date": order.date, "items": order.items, "name": order.name, "total": order.total })
     }).then((response: any) => {
         return response.json()

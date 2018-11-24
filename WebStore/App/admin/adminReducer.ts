@@ -1,6 +1,6 @@
 ﻿import { IPhone, IOrder } from "../store/configureStore";
 import { Action, Reducer } from 'redux';
-import { SELECT_PHONE, GET_ORDERS_SUCCESS } from './adminConstants'
+import { SELECT_PHONE, GET_ORDERS_SUCCESS } from '../store/constants'
 
 const initialState: IAdminState = {
     selectedPhone: null,

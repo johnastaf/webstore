@@ -1,3 +1,0 @@
-﻿export const ADD_PHONE_TO_CART = 'ADD_PHONE_TO_CART'
-export const REMOVE_PHONE_FROM_CART = 'REMOVE_PHONE_FROM_CART'
-export const CLEAN_CART = 'CLEAN_CART'

@@ -6,7 +6,6 @@ import { addPhoneToCart } from '../cart/cartActions'
 import { Dispatch, Action } from 'redux';
 import { IPhone, IPhoneInCart, IStoreState } from "../store/configureStore";
 import { CatalogItem } from "./catalogItem";
-import { ADD_PHONE_TO_CART } from '../cart/cartConstants'
 
 interface MyProps {
     phones: IPhone[];

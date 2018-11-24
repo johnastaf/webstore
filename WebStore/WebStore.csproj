@@ -8,7 +8,6 @@
   <ItemGroup>
     <None Remove="App\admin\admin.tsx" />
     <None Remove="App\admin\adminActions.ts" />
-    <None Remove="App\admin\adminConstants.ts" />
     <None Remove="App\admin\adminReducer.ts" />
     <None Remove="App\admin\createPhone.tsx" />
     <None Remove="App\admin\editItem.tsx" />
@@ -18,18 +17,17 @@
     <None Remove="App\app.tsx" />
     <None Remove="App\cart\cart.tsx" />
     <None Remove="App\cart\cartActions.ts" />
-    <None Remove="App\cart\cartConstants.ts" />
     <None Remove="App\cart\cartItem.tsx" />
     <None Remove="App\cart\cartReducer.ts" />
     <None Remove="App\cart\createOrder.tsx" />
     <None Remove="App\catalog\catalog.tsx" />
     <None Remove="App\catalog\catalogActions.ts" />
-    <None Remove="App\catalog\catalogConstants.ts" />
     <None Remove="App\catalog\catalogItem.tsx" />
     <None Remove="App\catalog\catalogReducer.ts" />
     <None Remove="App\header\header.tsx" />
     <None Remove="App\index.tsx" />
     <None Remove="App\store\configureStore.ts" />
+    <None Remove="App\store\constants.ts" />
     <None Remove="App\store\rootReducer.ts" />
   </ItemGroup>
 
@@ -50,7 +48,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="App\admin\admin.tsx" />
     <TypeScriptCompile Include="App\admin\adminActions.ts" />
-    <TypeScriptCompile Include="App\admin\adminConstants.ts" />
     <TypeScriptCompile Include="App\admin\adminReducer.ts" />
     <TypeScriptCompile Include="App\admin\createPhone.tsx" />
     <TypeScriptCompile Include="App\admin\editItem.tsx" />
@@ -61,17 +58,16 @@
     <TypeScriptCompile Include="App\cart\cartItem.tsx" />
     <TypeScriptCompile Include="App\cart\cart.tsx" />
     <TypeScriptCompile Include="App\cart\cartActions.ts" />
-    <TypeScriptCompile Include="App\cart\cartConstants.ts" />
     <TypeScriptCompile Include="App\cart\cartReducer.ts" />
     <TypeScriptCompile Include="App\cart\createOrder.tsx" />
     <TypeScriptCompile Include="App\catalog\catalog.tsx" />
     <TypeScriptCompile Include="App\catalog\catalogActions.ts" />
-    <TypeScriptCompile Include="App\catalog\catalogConstants.ts" />
     <TypeScriptCompile Include="App\catalog\catalogReducer.ts" />
     <TypeScriptCompile Include="App\catalog\catalogItem.tsx" />
     <TypeScriptCompile Include="App\header\header.tsx" />
     <TypeScriptCompile Include="App\index.tsx" />
     <TypeScriptCompile Include="App\store\configureStore.ts" />
+    <TypeScriptCompile Include="App\store\constants.ts" />
     <TypeScriptCompile Include="App\store\rootReducer.ts" />
   </ItemGroup>
 
