@@ -16,11 +16,24 @@ export class OrderItem extends React.Component<MyProps, {}> {
             );
         });
 
+        let getDate = (today: Date): string => {
+            let dddddd: Date = new Date(today);
+
+            var dd = dddddd.getDate();
+            var mm = dddddd.getMonth() + 1;
+
+            var yyyy = dddddd.getFullYear();
+
+            var todayFormat = dd + '/' + mm + '/' + yyyy;
+
+            return todayFormat;
+        }
+
         return (
             <div>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                     <a data-toggle="collapse" href={'#collapse' + this.props.order.id}>
-                        Date: {this.props.order.date} Name: {this.props.order.name} Address: {this.props.order.address}
+                        Date: {getDate(this.props.order.date)} Name: {this.props.order.name} Address: {this.props.order.address}
                     </a>
                     <span className="badge badge-primary badge-pill">{this.props.order.items.length}</span>
 

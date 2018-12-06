@@ -64,12 +64,17 @@ namespace WebStore
         [HttpPost("[action]")]
         public string CreateOrder([FromBody]Order order)
         {
-            foreach(OrderItem itemOrder in order.Items)
+            int total = 0;
+
+            foreach (OrderItem itemOrder in order.Items)
             {
-                itemOrder.Phone = _context.Phones.FirstOrDefault( p => p.Id == itemOrder.Phone.Id);
+                itemOrder.Phone = _context.Phones.FirstOrDefault(p => p.Id == itemOrder.Phone.Id);
+                total = itemOrder.Quantity + itemOrder.Price;
             }
 
-           //  _context.OrderItems.AddRange(order.Items);
+            order.Total = total;
+
+            //  _context.OrderItems.AddRange(order.Items);
             _context.Orders.Add(order);
             _context.SaveChanges();
 

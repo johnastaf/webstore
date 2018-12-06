@@ -20,7 +20,7 @@ export class CreateOrder extends React.Component<MyProps, {}> {
         let order: IOrder = {
             id: 0,
             date: today,
-            total: 500,
+            total: 0,
             name: this.refs.nameOrder.value,
             address: this.refs.addressOrder.value,
             items: this.props.items.map((it) => {
