@@ -30,7 +30,7 @@ export const createOrder = (order: IOrder) => (dispatch: any) => {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        body: JSON.stringify({ "address": order.address, "date": order.date, "items": order.items, "name": order.name, "total": order.total })
+        body: JSON.stringify({ "address": order.address, "date": order.date, "items": order.items, "name": order.name })
     }).then((response: any) => {
         return response.json()
     }).then((data: any) => {

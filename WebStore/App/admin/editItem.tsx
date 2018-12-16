@@ -12,7 +12,7 @@ interface MyProps {
 export class EditItem extends React.Component<MyProps, {}> {
     shouldComponentUpdate(nextProps: MyProps, nextState: MyProps): boolean {
 
-        if (nextProps.selectedItem!= null && nextProps.selectedItem.id == this.props.phone.id) {
+        if (nextProps.selectedItem != null && nextProps.selectedItem.id == this.props.phone.id) {
             this.refs.phoneItem.classList.add('active');
         } else {
             this.refs.phoneItem.classList.remove('active');
@@ -39,7 +39,11 @@ export class EditItem extends React.Component<MyProps, {}> {
                     <button style={{ marginLeft: '10px' }} type="button" className="btn btn-danger"
                         onClick={() => { this.props.removePhone(this.props.phone.id) }}>
                         Remove from db
-                 </button>
+                    </button>
+                    <div style={{ marginLeft: '10px' }}>
+                        <input id="someSwitchOptionDefault"  type="checkbox" />
+                        <label htmlFor="someSwitchOptionDefault">Show in catalog</label>
+                    </div>
                 </div>
             </li >
         );

@@ -28,7 +28,6 @@ export interface IPhoneInOrder extends IPhoneInCart{
 export interface IOrder {
     id: number;
     date: Date;
-    total: number;
     name: string;
     address: string;
     items: IPhoneInOrder[];
