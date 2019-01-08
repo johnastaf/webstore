@@ -25,12 +25,6 @@ namespace WebStore
         [HttpGet("[action]")]
         public List<Phone> GetPhones()
         {
-            //phones.Add(new Phone { Name = "iPhone 7 Plus", Price = 60000 });
-            //phones.Add(new Phone { Name = "Samsung Galaxy A5", Price = 24000 });
-            //phones.Add(new Phone { Name = "Xiaomi Mi 8", Price = 13000 });
-
-            //return phones;
-
             return _context.Phones.ToList();
         }
 
@@ -54,13 +48,13 @@ namespace WebStore
                     _context.Phones.Remove(phone);
                     _context.SaveChanges();
                 }
-                catch(System.Exception ex)
+                catch (System.Exception ex)
                 {
                     return new HttpResponseMessage(HttpStatusCode.NotFound);
                 }
             }
 
-            return new HttpResponseMessage(HttpStatusCode.OK); 
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
 
@@ -78,6 +72,21 @@ namespace WebStore
             }
 
             return "Not update";
+        }
+
+        [HttpGet("[action]/{id}")]
+        public HttpResponseMessage ShowPhone(string id)
+        {
+            Phone phone = _context.Phones.FirstOrDefault(p => p.Id == Int32.Parse(id));
+            if (phone != null)
+            {
+                phone.Show = !phone.Show;
+                _context.SaveChanges();
+
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }

@@ -14,6 +14,7 @@ export interface IPhone {
     name: string;
     price: number;
     image: string;
+    show: boolean;
 }
 
 export interface IPhoneInCart {

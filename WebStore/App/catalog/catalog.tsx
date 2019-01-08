@@ -20,7 +20,7 @@ class Catalog extends React.Component<MyProps, {}> {
     }
 
     render() {
-        let phones = this.props.phones.map(item => {
+        let phones = this.props.phones.filter(p => p.show == true).map(item => {
             return (
                 <CatalogItem phone={item} key={item.id} addPhoneToCart={this.props.addPhoneToCart}/>
             );

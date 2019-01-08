@@ -7,6 +7,7 @@ interface MyProps {
     selectedItem: IPhone;
     removePhone: (id: number) => void;
     selectPhone: (phone: IPhone) => void;
+    showPhone: (id: number) => void;
 }
 
 export class EditItem extends React.Component<MyProps, {}> {
@@ -30,19 +31,23 @@ export class EditItem extends React.Component<MyProps, {}> {
         this.refs.phoneItem.classList.add('active');
     }
 
+    handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.props.showPhone(this.props.phone.id);
+    }
+
     render() {
         return (
             <li ref="phoneItem" className="list-group-item" onClick={this.clickOnItem}>
                 <div className="row">
                     <div>{this.props.phone.name}</div>
-                    <div style={{ marginLeft: '10px' }}>{this.props.phone.price}</div>
-                    <button style={{ marginLeft: '10px' }} type="button" className="btn btn-danger"
+                    <div style={{ marginLeft: '10px' }}>Price: {this.props.phone.price}</div>
+                    <button style={{ marginLeft: '15px' }} type="button" className="btn btn-danger"
                         onClick={() => { this.props.removePhone(this.props.phone.id) }}>
                         Remove from db
                     </button>
-                    <div style={{ marginLeft: '10px' }}>
-                        <input id="someSwitchOptionDefault"  type="checkbox" />
-                        <label htmlFor="someSwitchOptionDefault">Show in catalog</label>
+                    <div style={{ marginLeft: '15px' }}>
+                        <input type="checkbox" defaultChecked={this.props.phone.show} onChange={this.handleOnChange} />
+                        <label>Show in catalog</label>
                     </div>
                 </div>
             </li >

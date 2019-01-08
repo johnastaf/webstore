@@ -38,7 +38,7 @@ export const createPhone = (name: string, price: number) => (dispatch: any) => {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        body: JSON.stringify({ "name": name, "price": price, "image": null })
+        body: JSON.stringify({ "name": name, "price": price, "image": null, show: false })
     }).then((response: any) => {
         return response.json()
     }).then((data: any) => {
@@ -86,4 +86,17 @@ export const updatePhone = (id: number, name: string, price: number) => (dispatc
     }).catch((ex) => {
         console.log(">>> err " + ex);
     });
+};
+
+export const showPhone = (id: number) => (dispatch: any) => {
+    fetch('/api/Phones/ShowPhone/' + id)
+        .then((response: any) => {
+            return response.json()
+        }).then((data: any) => {
+            console.log(JSON.stringify(data));
+            console.log(">>> suc " + data.statusCode);
+        }).catch((ex) => {
+            dispatch(errorReceive(ex));
+            console.log(">>> err " + ex);
+        });
 };

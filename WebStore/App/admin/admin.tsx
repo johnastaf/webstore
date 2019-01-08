@@ -1,7 +1,7 @@
 ﻿import * as React from "react";
 import * as ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { createPhone, removePhone, selectPhone, updatePhone } from './adminActions'
+import { createPhone, removePhone, selectPhone, updatePhone, showPhone } from './adminActions'
 import { Dispatch, Action } from 'redux';
 import { IPhone, IPhoneInCart, IStoreState } from "../store/configureStore";
 import { CreatePhone } from "./createPhone";
@@ -16,6 +16,7 @@ interface MyProps {
     removePhone: (id: number) => void;
     selectPhone: (phone: IPhone) => void;
     updatePhone: (id: number, name: string, price: number) => void;
+    showPhone: (id: number) => void;
 }
 
 class Admin extends React.Component<MyProps, {}> {
@@ -27,7 +28,7 @@ class Admin extends React.Component<MyProps, {}> {
         let phones = this.props.phones.map(item => {
             return (
                 <EditItem phone={item} key={item.id} selectedItem={this.props.selectedItem}
-                    removePhone={this.props.removePhone} selectPhone={this.props.selectPhone} />
+                    removePhone={this.props.removePhone} selectPhone={this.props.selectPhone} showPhone={this.props.showPhone} />
             );
         });
 
@@ -63,6 +64,9 @@ const mapDispatchToProps = (dispatch: any) => ({
     },
     updatePhone: (id: number, name: string, price: number) => {
         dispatch(updatePhone(id, name, price));
+    },
+    showPhone: (id: number) => {
+        dispatch(showPhone(id));
     },
 });
 
