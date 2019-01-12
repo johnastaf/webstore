@@ -1,9 +1,9 @@
 ﻿import { CREATE_PHONE, GET_ORDERS_SUCCESS, SELECT_PHONE } from '../store/constants'
 import "isomorphic-fetch"
-import { Dispatch } from 'redux';
-import { IStoreState, IPhone } from "../store/configureStore";
+import { IPhone } from "../store/configureStore";
 import { fetch } from 'domain-task';
-import { getPhones, errorReceive } from '../catalog/catalogActions'
+import { getPhones } from '../catalog/catalogActions'
+import { toastr } from 'react-redux-toastr'
 
 export function selectPhone(phone: IPhone) {
     return {
@@ -27,7 +27,7 @@ export const getOrders = () => (dispatch: any) => {
             console.log(">>> suc orders" + data);
             dispatch(receiveOrders(data))
         }).catch((ex) => {
-            console.log(">>> err " + ex);
+            toastr.error('WebStore', ex);
         });
 };
 
@@ -46,7 +46,7 @@ export const createPhone = (name: string, price: number) => (dispatch: any) => {
         // TODO : change to get from reducer
         dispatch(getPhones());
     }).catch((ex) => {
-        console.log(">>> err " + ex);
+        toastr.error('WebStore', ex);
     });
 };
 
@@ -62,10 +62,9 @@ export const removePhone = (id: number) => (dispatch: any) => {
                 dispatch(selectPhone(null));
                 // TODO : change to get from reducer
                 dispatch(getPhones());
-            } else dispatch(errorReceive("Can not remove this product. It is used."));
+            } else toastr.error('WebStore', 'Can not remove this product. It is used.');
         }).catch((ex) => {
-            dispatch(errorReceive(ex));
-            console.log(">>> err " + ex);
+            toastr.error('WebStore', ex);
         });
 };
 
@@ -84,7 +83,7 @@ export const updatePhone = (id: number, name: string, price: number) => (dispatc
         dispatch(selectPhone(null));
         dispatch(getPhones());
     }).catch((ex) => {
-        console.log(">>> err " + ex);
+        toastr.error('WebStore', ex);
     });
 };
 
@@ -96,7 +95,6 @@ export const showPhone = (id: number) => (dispatch: any) => {
             console.log(JSON.stringify(data));
             console.log(">>> suc " + data.statusCode);
         }).catch((ex) => {
-            dispatch(errorReceive(ex));
-            console.log(">>> err " + ex);
+            toastr.error('WebStore', ex);
         });
 };

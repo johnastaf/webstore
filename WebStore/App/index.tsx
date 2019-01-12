@@ -7,16 +7,29 @@ import thunk from 'redux-thunk'
 import { rootReducer } from './store/rootReducer'
 import { IStoreState } from "./store/configureStore";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ReduxToastr from 'react-redux-toastr'
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 
-const store:Store<IStoreState> = createStore(
+const store: Store<IStoreState> = createStore(
     rootReducer,
-      (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
-       applyMiddleware(thunk)
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(thunk)
 );
 
 render(
     <Provider store={store}>
-        <App />
+        <div>
+            <App />
+            <ReduxToastr
+                timeOut={4000}
+                newestOnTop={false}
+                preventDuplicates
+                position="top-left"
+                transitionIn="fadeIn"
+                transitionOut="fadeOut"
+                progressBar
+                closeOnToastrClick />
+        </div>
     </Provider>,
     document.getElementById('content')
 )

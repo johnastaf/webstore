@@ -1,5 +1,6 @@
 ﻿import { ADD_PHONE_TO_CART, REMOVE_PHONE_FROM_CART, CLEAN_CART } from '../store/constants'
 import { IPhoneInCart, IOrder } from "../store/configureStore";
+import { toastr } from 'react-redux-toastr'
 
 export function addPhoneToCart(phoneInCart: IPhoneInCart) {
     return {
@@ -36,6 +37,6 @@ export const createOrder = (order: IOrder) => (dispatch: any) => {
     }).then((data: any) => {
         console.log(">>> suc " + data);
     }).catch((ex) => {
-        console.log(">>> err " + ex);
+        toastr.error('WebStore', ex);
     });
 };
