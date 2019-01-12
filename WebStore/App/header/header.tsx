@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { IPhoneInCart, IStoreState } from "../store/configureStore";
 import { connect } from 'react-redux';
 import { searchPhones } from '../catalog/catalogActions'
-import 'bootstrap/js/src/collapse';
-import 'bootstrap/js/src/dropdown';
+import 'bootstrap/js/dist/collapse';
+import 'bootstrap/js/dist/dropdown';
 
 interface MyProps {
     totalCount: number;

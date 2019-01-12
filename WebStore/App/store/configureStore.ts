@@ -1,5 +1,4 @@
-﻿import { URL } from "url";
-import { ICatalogState } from "../catalog/catalogReducer";
+﻿import { ICatalogState } from "../catalog/catalogReducer";
 import { ICartState } from "../cart/cartReducer";
 import { IAdminState } from "../admin/adminReducer";
 
