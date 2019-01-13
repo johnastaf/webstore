@@ -35,7 +35,7 @@ export const createOrder = (order: IOrder) => (dispatch: any) => {
     }).then((response: any) => {
         return response.json()
     }).then((data: any) => {
-        console.log(">>> suc " + data);
+        console.log(">>> order crated");
     }).catch((ex) => {
         toastr.error('WebStore', ex);
     });

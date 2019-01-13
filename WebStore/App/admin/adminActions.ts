@@ -91,9 +91,6 @@ export const showPhone = (id: number) => (dispatch: any) => {
     fetch('/api/Phones/ShowPhone/' + id)
         .then((response: any) => {
             return response.json()
-        }).then((data: any) => {
-            console.log(JSON.stringify(data));
-            console.log(">>> suc " + data.statusCode);
         }).catch((ex) => {
             toastr.error('WebStore', ex);
         });

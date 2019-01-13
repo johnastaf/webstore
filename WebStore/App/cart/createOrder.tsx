@@ -43,7 +43,6 @@ export class CreateOrder extends React.Component<MyProps, {}> {
                     <label htmlFor="addressOrder">Address</label>
                     <input type="text" className="form-control" ref="addressOrder" placeholder="Enter address" />
                 </div>
-
                 <button className="btn btn-primary" onClick={this.createOrder}>
                     Create order
                  </button>

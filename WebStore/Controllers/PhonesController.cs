@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Models;
 
@@ -29,12 +28,21 @@ namespace WebStore
         }
 
         [HttpPost("[action]")]
-        public string CreatePhone([FromBody]Phone phone)
+        public HttpResponseMessage CreatePhone([FromBody]Phone phone)
         {
-            _context.Add(phone);
-            _context.SaveChanges();
+            try
+            {
+                _context.Add(phone);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                this.Log(ex.Message);
 
-            return "Success!!!";
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         [HttpGet("[action]/{id}")]
@@ -48,8 +56,10 @@ namespace WebStore
                     _context.Phones.Remove(phone);
                     _context.SaveChanges();
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
+                    this.Log(ex.Message);
+
                     return new HttpResponseMessage(HttpStatusCode.NotFound);
                 }
             }
@@ -59,34 +69,46 @@ namespace WebStore
 
 
         [HttpPost("[action]")]
-        public string UpdatePhone([FromBody]Phone phone)
+        public HttpResponseMessage UpdatePhone([FromBody]Phone phone)
         {
             Phone ph = _context.Phones.FirstOrDefault(p => p.Id == phone.Id);
+
             if (ph != null)
             {
                 ph.Name = phone.Name;
                 ph.Price = phone.Price;
                 _context.SaveChanges();
 
-                return "Updated";
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
 
-            return "Not update";
+            return new HttpResponseMessage(HttpStatusCode.NotFound);
         }
 
         [HttpGet("[action]/{id}")]
         public HttpResponseMessage ShowPhone(string id)
         {
             Phone phone = _context.Phones.FirstOrDefault(p => p.Id == Int32.Parse(id));
+
             if (phone != null)
             {
                 phone.Show = !phone.Show;
                 _context.SaveChanges();
 
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
 
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return new HttpResponseMessage(HttpStatusCode.NotFound);
+        }
+
+        private void Log(string message)
+        {
+            string logPath = AppDomain.CurrentDomain.BaseDirectory + @"\logs\log.txt";
+
+            using (StreamWriter sw = System.IO.File.AppendText(logPath))
+            {
+                sw.WriteLine(message);
+            }
         }
     }
 }

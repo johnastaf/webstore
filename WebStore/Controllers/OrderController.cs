@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
+using System.Net;
 
 namespace WebStore
 {
@@ -27,7 +29,7 @@ namespace WebStore
         }
 
         [HttpPost("[action]")]
-        public string CreateOrder([FromBody]Order order)
+        public HttpResponseMessage CreateOrder([FromBody]Order order)
         {
             foreach (OrderItem itemOrder in order.Items)
             {
@@ -37,7 +39,7 @@ namespace WebStore
             _context.Orders.Add(order);
             _context.SaveChanges();
 
-            return "Success!!!";
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }
