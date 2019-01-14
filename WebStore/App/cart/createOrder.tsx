@@ -1,6 +1,6 @@
 ﻿import * as React from "react";
 import { IPhoneInCart, IOrder } from "../store/configureStore";
-
+import '../style/app.css'
 
 interface MyProps {
     items: IPhoneInCart[];
@@ -15,21 +15,27 @@ export class CreateOrder extends React.Component<MyProps, {}> {
     };
 
     createOrder = () => {
-        var today = new Date();
+        this.refs.nameOrder.classList.remove('required-field');
+        this.refs.addressOrder.classList.remove('required-field');
 
-        let order: IOrder = {
-            id: 0,
-            date: today,
-            name: this.refs.nameOrder.value,
-            address: this.refs.addressOrder.value,
-            items: this.props.items.map((it) => {
-                return { ...it, price: it.phone.price };
-            })
+        if (this.refs.nameOrder.value == '') {
+            this.refs.nameOrder.classList.add('required-field');
+        } else if (this.refs.addressOrder.value == '') {
+            this.refs.addressOrder.classList.add('required-field');
+        } else {
+            let order: IOrder = {
+                id: 0,
+                date: new Date(),
+                name: this.refs.nameOrder.value,
+                address: this.refs.addressOrder.value,
+                items: this.props.items.map((it) => {
+                    return { ...it, price: it.phone.price };
+                })
+            }
+
+             this.props.createOrder(order);
+             this.props.cleanCart();
         }
-
-        this.props.createOrder(order);
-
-        this.props.cleanCart();
     }
 
     render() {

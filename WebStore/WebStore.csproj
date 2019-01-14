@@ -29,10 +29,10 @@
     <None Remove="App\store\configureStore.ts" />
     <None Remove="App\store\constants.ts" />
     <None Remove="App\store\rootReducer.ts" />
+    <None Remove="App\style\app.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
@@ -70,6 +70,7 @@
     <TypeScriptCompile Include="App\store\configureStore.ts" />
     <TypeScriptCompile Include="App\store\constants.ts" />
     <TypeScriptCompile Include="App\store\rootReducer.ts" />
+    <TypeScriptCompile Include="App\style\app.css" />
   </ItemGroup>
 
 </Project>
