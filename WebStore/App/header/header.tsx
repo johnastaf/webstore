@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { searchPhones } from '../catalog/catalogActions'
 import 'bootstrap/js/dist/collapse';
 import 'bootstrap/js/dist/dropdown';
+import '../style/app.css';
+import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login'
 
 interface MyProps {
     totalCount: number;
@@ -18,6 +20,11 @@ class Header extends React.Component<MyProps, {}> {
 
     searchPhones = () => {
         this.props.searchPhones(this.refs.searchText.value);
+    }
+
+
+    responseFacebook = (userInfo: ReactFacebookLoginInfo) => {
+        console.log(JSON.stringify(userInfo));
     }
 
     render() {
@@ -50,6 +57,14 @@ class Header extends React.Component<MyProps, {}> {
                     <div className="form-inline my-2 my-lg-0">
                         <input ref="searchText" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.searchPhones}>Search</button>
+                    </div>
+                    <div className="form-inline my-2 my-lg-0 left-10px">
+                        <FacebookLogin
+                            appId="231121177769691"
+                            autoLoad
+                            callback={this.responseFacebook}
+                            size="small"
+                            textButton="Login"/>                       
                     </div>
                 </div>
             </nav>

@@ -1,3 +1,7 @@
 ﻿.required-field {
     border: 1px solid red !important;
 }
+
+.left-10px {
+    margin-left: 10px;
+}
