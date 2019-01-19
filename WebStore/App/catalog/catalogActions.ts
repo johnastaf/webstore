@@ -1,4 +1,4 @@
-﻿import { GET_PHONES_SUCCESS, GET_PHONES_ERROR, SEARCH_PHONES } from '../store/constants'
+﻿import { GET_PHONES_SUCCESS, SEARCH_PHONES } from '../store/constants'
 import "isomorphic-fetch"
 import { fetch } from 'domain-task';
 import { toastr } from 'react-redux-toastr'

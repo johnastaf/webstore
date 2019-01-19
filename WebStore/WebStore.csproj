@@ -30,6 +30,8 @@
     <None Remove="App\store\constants.ts" />
     <None Remove="App\store\rootReducer.ts" />
     <None Remove="App\style\app.css" />
+    <None Remove="App\user\userActions.ts" />
+    <None Remove="App\user\userReducer.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,6 +73,8 @@
     <TypeScriptCompile Include="App\store\constants.ts" />
     <TypeScriptCompile Include="App\store\rootReducer.ts" />
     <TypeScriptCompile Include="App\style\app.css" />
+    <TypeScriptCompile Include="App\user\userActions.ts" />
+    <TypeScriptCompile Include="App\user\userReducer.ts" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,13 @@
 ﻿import { ICatalogState } from "../catalog/catalogReducer";
 import { ICartState } from "../cart/cartReducer";
 import { IAdminState } from "../admin/adminReducer";
+import { IUserState } from "../user/userReducer";
 
 export interface IStoreState {
     catalog: ICatalogState;
     cart: ICartState;
     admin: IAdminState;
+    user: IUserState;
 };
 
 export interface IPhone {
@@ -31,5 +33,11 @@ export interface IOrder {
     name: string;
     address: string;
     items: IPhoneInOrder[];
+}
+
+export interface IUser {
+    isLogged: boolean;
+    name: string;
+    id: string;
 }
 
