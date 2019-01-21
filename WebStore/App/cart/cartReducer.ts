@@ -1,6 +1,6 @@
 ﻿import { ADD_PHONE_TO_CART, REMOVE_PHONE_FROM_CART, CLEAN_CART } from '../store/constants'
 import { IPhoneInCart } from "../store/configureStore";
-import { Action, Reducer } from 'redux';
+import { Reducer } from 'redux';
 
 let index: number;
 let countPhonesInCart: number;

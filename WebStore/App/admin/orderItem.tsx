@@ -17,16 +17,9 @@ export class OrderItem extends React.Component<MyProps, {}> {
         });
 
         let getDate = (today: Date): string => {
-            let dddddd: Date = new Date(today);
+            let date: Date = new Date(today);
 
-            var dd = dddddd.getDate();
-            var mm = dddddd.getMonth() + 1;
-
-            var yyyy = dddddd.getFullYear();
-
-            var todayFormat = dd + '/' + mm + '/' + yyyy;
-
-            return todayFormat;
+            return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
         }
 
         return (

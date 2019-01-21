@@ -1,8 +1,6 @@
 ﻿import * as React from "react";
-import * as ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { getOrders } from './adminActions'
-import { Dispatch, Action } from 'redux';
 import { IOrder, IStoreState } from "../store/configureStore";
 import { OrderItem } from "./orderItem";
 

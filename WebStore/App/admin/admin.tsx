@@ -1,9 +1,7 @@
 ﻿import * as React from "react";
-import * as ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { createPhone, removePhone, selectPhone, updatePhone, showPhone } from './adminActions'
-import { Dispatch, Action } from 'redux';
-import { IPhone, IPhoneInCart, IStoreState } from "../store/configureStore";
+import { IPhone, IStoreState } from "../store/configureStore";
 import { CreatePhone } from "./createPhone";
 import { UpdatePhone } from "./updatePhone";
 import { EditItem } from "./editItem";

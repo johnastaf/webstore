@@ -24,7 +24,6 @@ export const getOrders = () => (dispatch: any) => {
         .then((response: any) => {
             return response.json()
         }).then((data: any) => {
-            console.log(">>> suc orders" + data);
             dispatch(receiveOrders(data))
         }).catch((ex) => {
             toastr.error('WebStore', ex);
@@ -42,7 +41,6 @@ export const createPhone = (name: string, price: number) => (dispatch: any) => {
     }).then((response: any) => {
         return response.json()
     }).then((data: any) => {
-        console.log(">>> suc " + data);
         // TODO : change to get from reducer
         dispatch(getPhones());
     }).catch((ex) => {
@@ -56,8 +54,6 @@ export const removePhone = (id: number) => (dispatch: any) => {
         .then((response: any) => {
             return response.json()
         }).then((data: any) => {
-            console.log(JSON.stringify(data));
-            console.log(">>> suc " + data.statusCode);
             if (data.statusCode == 200) {
                 dispatch(selectPhone(null));
                 // TODO : change to get from reducer
@@ -79,7 +75,6 @@ export const updatePhone = (id: number, name: string, price: number) => (dispatc
     }).then((response: any) => {
         return response.json()
     }).then((data: any) => {
-        console.log(">>> suc " + data);
         dispatch(selectPhone(null));
         dispatch(getPhones());
     }).catch((ex) => {

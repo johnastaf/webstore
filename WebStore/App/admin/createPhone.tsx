@@ -20,6 +20,7 @@ export class CreatePhone extends React.Component<MyProps, {}> {
 
     render() {
         return (
+            // TODO: Move all styles to app.css
             <div className="row" style={{ marginBottom: '10px' }}>
                 <div style={{ marginLeft: '20px' }}>
                     Name: <input type="input" ref="phoneName" />

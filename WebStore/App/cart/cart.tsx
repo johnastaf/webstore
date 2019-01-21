@@ -3,7 +3,6 @@ import { IPhoneInCart, IStoreState, IOrder } from "../store/configureStore";
 import { connect } from 'react-redux';
 import { CartItem } from "./cartItem";
 import { CreateOrder } from "./createOrder";
-import { Dispatch, Action } from 'redux';
 import { removePhoneFromCart, createOrder, cleanCart } from "./cartActions"
 
 interface MyProps {

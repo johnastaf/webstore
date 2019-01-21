@@ -1,4 +1,4 @@
-﻿import { ADD_PHONE_TO_CART, GET_PHONES_SUCCESS, SEARCH_PHONES } from '../store/constants'
+﻿import { GET_PHONES_SUCCESS, SEARCH_PHONES } from '../store/constants'
 import { Reducer } from 'redux';
 import { IPhone } from "../store/configureStore";
 

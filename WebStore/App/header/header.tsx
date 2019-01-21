@@ -1,8 +1,8 @@
 ﻿import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { IPhoneInCart, IStoreState, IUser } from "../store/configureStore";
+import { IStoreState, IUser } from "../store/configureStore";
 import { connect } from 'react-redux';
-import { searchPhones } from '../catalog/catalogActions'
+import { searchPhones, getPhones } from '../catalog/catalogActions'
 import 'bootstrap/js/dist/collapse';
 import 'bootstrap/js/dist/dropdown';
 import '../style/app.css';
@@ -14,12 +14,17 @@ interface MyProps {
     user: IUser;
     searchPhones: (query: string) => void;
     userAutorized: (user: IUser) => void;
+    getPhones: () => void;
 }
 
 class Header extends React.Component<MyProps, {}> {
     public refs: {
         searchText: HTMLInputElement;
     };
+
+    componentDidMount() {
+        this.props.getPhones();
+    }
 
     searchPhones = () => {
         this.props.searchPhones(this.refs.searchText.value);
@@ -77,8 +82,8 @@ class Header extends React.Component<MyProps, {}> {
                     </div>
 
                     <div className="form-inline my-2 my-lg-0 left-10px">
-                        {this.props.user.isLogged == true && <div>Hello, {this.props.user.name}</div>}
-                        {this.props.user.isLogged == false &&
+                        {this.props.user.isLogged && <div>Hello, {this.props.user.name}</div>}
+                        {!this.props.user.isLogged &&
                             <FacebookLogin
                                 appId="231121177769691"
                                 autoLoad
@@ -102,7 +107,8 @@ let mapProps = (state: IStoreState) => {
 
 const mapDispatchToProps = (dispatch: any) => ({
     searchPhones: (query: string) => dispatch(searchPhones(query)),
-    userAutorized: (user: IUser) => dispatch(userAutorized(user))
+    userAutorized: (user: IUser) => dispatch(userAutorized(user)),
+    getPhones: () => dispatch(getPhones())
 });
 
 export default connect(mapProps, mapDispatchToProps)(Header) 
