@@ -31,6 +31,7 @@
     <None Remove="App\store\rootReducer.ts" />
     <None Remove="App\style\app.css" />
     <None Remove="App\user\userActions.ts" />
+    <None Remove="App\user\userLogin.tsx" />
     <None Remove="App\user\userReducer.ts" />
   </ItemGroup>
 
@@ -42,7 +43,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
   </ItemGroup>
 	<ItemGroup>
 	   <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
@@ -74,6 +75,7 @@
     <TypeScriptCompile Include="App\store\rootReducer.ts" />
     <TypeScriptCompile Include="App\style\app.css" />
     <TypeScriptCompile Include="App\user\userActions.ts" />
+    <TypeScriptCompile Include="App\user\userLogin.tsx" />
     <TypeScriptCompile Include="App\user\userReducer.ts" />
   </ItemGroup>
 

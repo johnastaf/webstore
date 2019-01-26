@@ -17,5 +17,7 @@ namespace WebStore.Models
 
         public DbSet<OrderItem> OrderItems { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
     }
 }

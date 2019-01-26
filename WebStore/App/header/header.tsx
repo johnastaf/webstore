@@ -92,6 +92,8 @@ class Header extends React.Component<MyProps, {}> {
                                 textButton="Login" />
                         }
                     </div>
+
+                    <Link className="nav-link" to="/user">Login</Link>
                 </div>
             </nav>
         );

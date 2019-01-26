@@ -6,6 +6,7 @@ import Cart from './cart/cart';
 import Catalog from './catalog/catalog';
 import Admin from './admin/admin';
 import Order from './admin/order';
+import UserLogin from './user/userLogin';
 
 export default class App extends React.Component {
     render() {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
                             // TODO: restrict access to routes in react-router
                             <Route path="/admin" component={Admin} />
                             <Route path="/order" component={Order} />
+                            <Route path="/user" component={UserLogin} />
                             <Route path="/" component={Catalog} />
                         </Switch>
                     </main>

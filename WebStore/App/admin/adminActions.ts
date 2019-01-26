@@ -71,10 +71,11 @@ export const updatePhone = (id: number, name: string, price: number) => (dispatc
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        body: JSON.stringify({ "id" : id, "name": name, "price": price, "image": null })
+        body: JSON.stringify({ "id": id, "name": name, "price": price, "image": null })
     }).then((response: any) => {
         return response.json()
-    }).then((data: any) => {
+        }).then((data: any) => {
+        //TODO: update phone in store, not need get phones from server again
         dispatch(selectPhone(null));
         dispatch(getPhones());
     }).catch((ex) => {
