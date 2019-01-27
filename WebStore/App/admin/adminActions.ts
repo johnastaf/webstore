@@ -36,6 +36,7 @@ export const createPhone = (name: string, price: number) => (dispatch: any) => {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken")
         },
         body: JSON.stringify({ "name": name, "price": price, "image": null, show: false })
     }).then((response: any) => {

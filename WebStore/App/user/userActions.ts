@@ -9,7 +9,7 @@ export function userAutorized(user: IUser) {
     }
 }
 
-export function userLogout(user: IUser) {
+export function userLogout() {
     return {
         type: USER_LOGOUT
     }
@@ -33,6 +33,9 @@ export const userLogin = (email: string, password: string) => (dispatch: any) =>
         let jsonData: any = JSON.parse(data);
 
         if (jsonData != null && jsonData.access_token != null) {
+
+            console.log(jsonData.access_token);
+            sessionStorage.setItem("accessToken", jsonData.access_token);
 
             let user: IUser = {
                 isLogged: true,

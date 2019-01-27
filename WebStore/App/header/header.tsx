@@ -6,6 +6,7 @@ import { searchPhones, getPhones } from '../catalog/catalogActions'
 import 'bootstrap/js/dist/collapse';
 import 'bootstrap/js/dist/dropdown';
 import '../style/app.css';
+import { userLogout } from '../user/userActions';
 
 
 interface MyProps {
@@ -13,6 +14,7 @@ interface MyProps {
     user: IUser;
     searchPhones: (query: string) => void;
     getPhones: () => void;
+    userLogout: () => void;
 }
 
 class Header extends React.Component<MyProps, {}> {
@@ -22,6 +24,10 @@ class Header extends React.Component<MyProps, {}> {
 
     componentDidMount() {
         this.props.getPhones();
+    }
+
+    logout = () => {
+        this.props.userLogout();
     }
 
     searchPhones = () => {
@@ -46,7 +52,7 @@ class Header extends React.Component<MyProps, {}> {
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Admin
-                             </a>
+                                </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <Link className="dropdown-item" to="/admin">Products</Link>
                                     <Link className="dropdown-item" to="/order">Orders</Link>
@@ -64,7 +70,19 @@ class Header extends React.Component<MyProps, {}> {
                         <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.searchPhones}>Search</button>
                     </div>
                     <div className="form-inline my-2 my-lg-0 left-10px">
-                        {this.props.user.isLogged && <div>Hello, {this.props.user.name}</div>}
+                        {this.props.user.isLogged &&
+
+                            <div className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Hello, {this.props.user.name}
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <Link className="dropdown-item" to="/admin">My orders</Link>
+                                    <button className="dropdown-item" onClick={this.logout}>Logout</button>
+                                </div>
+                            </div>
+
+                        }
                         {!this.props.user.isLogged && <Link className="nav-link" to="/user">Login</Link>}
                     </div>
                 </div>
@@ -82,7 +100,8 @@ let mapProps = (state: IStoreState) => {
 
 const mapDispatchToProps = (dispatch: any) => ({
     searchPhones: (query: string) => dispatch(searchPhones(query)),
-    getPhones: () => dispatch(getPhones())
+    getPhones: () => dispatch(getPhones()),
+    userLogout: () => dispatch(userLogout())
 });
 
 export default connect(mapProps, mapDispatchToProps)(Header) 

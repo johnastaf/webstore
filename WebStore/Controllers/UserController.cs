@@ -40,12 +40,12 @@ namespace WebStore.Controllers
 
             var now = DateTime.UtcNow;
             var jwt = new JwtSecurityToken(
-                    issuer: "ValidIssuer",
-                    audience: "ValidateAudience",
+                    issuer: "WebStoreIssuer",
+                    audience: "WebStoreAudience",
                     notBefore: now,
                     claims: identity.Claims,
                     expires: now.Add(TimeSpan.FromMinutes(5)),
-                    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("IssuerSigningSecretKey")), SecurityAlgorithms.HmacSha256));
+                    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("WebStoreSecretKey")), SecurityAlgorithms.HmacSha256));
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 

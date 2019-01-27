@@ -28,9 +28,9 @@ namespace WebStore
                 options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidIssuer = "ValidIssuer",
-                    ValidAudience = "ValidateAudience",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("IssuerSigningSecretKey")),
+                    ValidIssuer = "WebStoreIssuer",
+                    ValidAudience = "WebStoreAudience",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("WebStoreSecretKey")),
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     ClockSkew = TimeSpan.Zero

@@ -1,4 +1,4 @@
-﻿import { USER_AUTORIZED } from '../store/constants'
+﻿import { USER_AUTORIZED, USER_LOGOUT } from '../store/constants'
 import { Reducer } from 'redux';
 import { IUser } from "../store/configureStore";
 
@@ -22,6 +22,12 @@ export const user: Reducer<IUserState> = (state: IUserState = initialState, acti
 
             return { ...state, user: action.user }
 
+        case USER_LOGOUT:
+            console.log("USER_LOGOUT");
+
+            sessionStorage.removeItem("accessToken");
+
+            return { ...state, user: initialState };
 
         default:
             return state;

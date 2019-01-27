@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Models;
 
@@ -27,6 +28,7 @@ namespace WebStore
             return _context.Phones.ToList();
         }
 
+        [Authorize]
         [HttpPost("[action]")]
         public HttpResponseMessage CreatePhone([FromBody]Phone phone)
         {
