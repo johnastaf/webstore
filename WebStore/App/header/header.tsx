@@ -6,14 +6,12 @@ import { searchPhones, getPhones } from '../catalog/catalogActions'
 import 'bootstrap/js/dist/collapse';
 import 'bootstrap/js/dist/dropdown';
 import '../style/app.css';
-import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login'
-import { userAutorized } from '../user/userActions';
+
 
 interface MyProps {
     totalCount: number;
     user: IUser;
     searchPhones: (query: string) => void;
-    userAutorized: (user: IUser) => void;
     getPhones: () => void;
 }
 
@@ -28,21 +26,6 @@ class Header extends React.Component<MyProps, {}> {
 
     searchPhones = () => {
         this.props.searchPhones(this.refs.searchText.value);
-    }
-
-
-    responseFacebook = (userInfo: ReactFacebookLoginInfo) => {
-        console.log(JSON.stringify(userInfo));
-
-        if (userInfo.accessToken != null) {
-            let user: IUser = {
-                isLogged: true,
-                name: userInfo.name,
-                id: userInfo.id
-            }
-
-            this.props.userAutorized(user);
-        }
     }
 
     render() {
@@ -80,20 +63,10 @@ class Header extends React.Component<MyProps, {}> {
                         <input ref="searchText" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.searchPhones}>Search</button>
                     </div>
-
                     <div className="form-inline my-2 my-lg-0 left-10px">
                         {this.props.user.isLogged && <div>Hello, {this.props.user.name}</div>}
-                        {!this.props.user.isLogged &&
-                            <FacebookLogin
-                                appId="231121177769691"
-                                autoLoad
-                                callback={this.responseFacebook}
-                                size="small"
-                                textButton="Login" />
-                        }
+                        {!this.props.user.isLogged && <Link className="nav-link" to="/user">Login</Link>}
                     </div>
-
-                    <Link className="nav-link" to="/user">Login</Link>
                 </div>
             </nav>
         );
@@ -109,7 +82,6 @@ let mapProps = (state: IStoreState) => {
 
 const mapDispatchToProps = (dispatch: any) => ({
     searchPhones: (query: string) => dispatch(searchPhones(query)),
-    userAutorized: (user: IUser) => dispatch(userAutorized(user)),
     getPhones: () => dispatch(getPhones())
 });
 

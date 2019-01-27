@@ -18,6 +18,8 @@ export interface IUserState {
 export const user: Reducer<IUserState> = (state: IUserState = initialState, action: any) => {
     switch (action.type) {
         case USER_AUTORIZED:
+            console.log("USER_AUTORIZED: " + JSON.stringify(action.user));
+
             return { ...state, user: action.user }
 
 

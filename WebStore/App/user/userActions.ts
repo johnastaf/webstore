@@ -9,7 +9,6 @@ export function userAutorized(user: IUser) {
     }
 }
 
-
 export function userLogout(user: IUser) {
     return {
         type: USER_LOGOUT
@@ -25,13 +24,24 @@ export const userLogin = (email: string, password: string) => (dispatch: any) =>
         },
         body: JSON.stringify({ "email": email, "password": password })
     }).then((response: any) => {
-        console.log(JSON.stringify(response));
-        return response.json()
-        }).then((data: any) => {
-            console.log(JSON.stringify(data));
-        if (data.statusCode == 400) {
+        if (response.status === 400) {
             toastr.error('WebStore', 'Wrong email or password.');
-        } 
+        } else {
+            return response.json();
+        }
+    }).then((data: any) => {
+        let jsonData: any = JSON.parse(data);
+
+        if (jsonData != null && jsonData.access_token != null) {
+
+            let user: IUser = {
+                isLogged: true,
+                name: jsonData.username,
+                id: "test_id"
+            }
+
+            dispatch(userAutorized(user));
+        }
     }).catch((ex) => {
         console.log(ex);
     });

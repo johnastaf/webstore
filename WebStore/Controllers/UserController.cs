@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
@@ -33,18 +30,15 @@ namespace WebStore.Controllers
 
 
         [HttpPost("[action]")]
-        public async Task Token([FromBody]LoginPassword model)
+        public IActionResult Token([FromBody]LoginPassword model)
         {
             var identity = GetIdentity(model.email, model.password);
             if (identity == null)
             {
-                Response.StatusCode = 400;
-                await Response.WriteAsync("Invalid username or password.");
-                return;
+                return BadRequest();
             }
 
             var now = DateTime.UtcNow;
-            // создаем JWT-токен
             var jwt = new JwtSecurityToken(
                     issuer: "ValidIssuer",
                     audience: "ValidateAudience",
@@ -55,15 +49,10 @@ namespace WebStore.Controllers
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var response = new
-            {
-                access_token = encodedJwt,
-                username = identity.Name
-            };
+            var response = new { access_token = encodedJwt, username = identity.Name };
 
-            // сериализация ответа
-            Response.ContentType = "application/json";
-            await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+
+            return Ok(JsonConvert.SerializeObject(response));
         }
 
         private ClaimsIdentity GetIdentity(string email, string password)
@@ -82,7 +71,6 @@ namespace WebStore.Controllers
                 return claimsIdentity;
             }
 
-            // если пользователя не найдено
             return null;
         }
     }
