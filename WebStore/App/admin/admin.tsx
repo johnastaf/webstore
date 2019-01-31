@@ -1,10 +1,11 @@
 ﻿import * as React from "react";
 import { connect } from 'react-redux';
 import { createPhone, removePhone, selectPhone, updatePhone, showPhone } from './adminActions'
-import { IPhone, IStoreState } from "../store/configureStore";
+import { IPhone, IStoreState, IUser } from "../store/configureStore";
 import { CreatePhone } from "./createPhone";
 import { UpdatePhone } from "./updatePhone";
 import { EditItem } from "./editItem";
+import { Redirect } from "react-router";
 
 
 interface MyProps {
@@ -15,6 +16,7 @@ interface MyProps {
     selectPhone: (phone: IPhone) => void;
     updatePhone: (id: number, name: string, price: number) => void;
     showPhone: (id: number) => void;
+    user: IUser;
 }
 
 class Admin extends React.Component<MyProps, {}> {
@@ -31,13 +33,15 @@ class Admin extends React.Component<MyProps, {}> {
         });
 
         return (
-            <div>
-                <CreatePhone createPhone={this.props.createPhone} />
-                {this.props.selectedItem != null && <UpdatePhone updatePhone={this.props.updatePhone} selectedItem={this.props.selectedItem} />}
-                <ul  className="list-group">
-                    {phones}
-                </ul >
-            </div>
+            this.props.user.isLogged === true
+                ? <div>
+                    <CreatePhone createPhone={this.props.createPhone} />
+                    {this.props.selectedItem != null && <UpdatePhone updatePhone={this.props.updatePhone} selectedItem={this.props.selectedItem} />}
+                    <ul className="list-group">
+                        {phones}
+                    </ul >
+                </div >
+                : <Redirect to={{ pathname: '/user' }} />
         );
     }
 };
@@ -45,7 +49,8 @@ class Admin extends React.Component<MyProps, {}> {
 let mapProps = (state: IStoreState) => {
     return {
         phones: state.catalog.phones,
-        selectedItem: state.admin.selectedPhone
+        selectedItem: state.admin.selectedPhone,
+        user: state.user.user
     }
 }
 

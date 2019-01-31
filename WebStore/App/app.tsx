@@ -17,7 +17,6 @@ export default class App extends React.Component {
                     <main className="container" style={{ marginTop: '10px' }}>
                         <Switch>
                             <Route path="/cart" component={Cart} />
-                            // TODO: restrict access to routes in react-router
                             <Route path="/admin" component={Admin} />
                             <Route path="/order" component={Order} />
                             <Route path="/user" component={UserLogin} />

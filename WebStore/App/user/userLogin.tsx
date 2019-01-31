@@ -39,10 +39,7 @@ class UserLogin extends React.Component<MyProps, {}> {
 
     render() {
         return (
-
-
             <div className="container">
-
                 <div className="card">
                     <article className="card-body">
                         <a href="" className="float-right btn btn-outline-primary">Sign up</a>
@@ -50,7 +47,6 @@ class UserLogin extends React.Component<MyProps, {}> {
                         <p>
                             <FacebookLogin
                                 appId="231121177769691"
-                                autoLoad
                                 fields="name,email"
                                 callback={this.responseFacebook}
                                 cssClass="btn btn-block btn-outline-primary fab "
@@ -79,22 +75,7 @@ class UserLogin extends React.Component<MyProps, {}> {
                         </form>
                     </article>
                 </div>
-
-
             </div>
-
-
-            //<div>
-            //    <form>
-            //        <input type="text" id="login" ref="email" placeholder="email" />
-            //        <input type="password" id="password" ref="password" placeholder="password" />
-            //        <button style={{ marginLeft: '15px' }} type="button" 
-            //            onClick={this.login}>
-            //            Login
-            //        </button>
-            //    </form>
-            //</div>
-
         );
     }
 };

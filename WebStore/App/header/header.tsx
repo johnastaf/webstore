@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { IStoreState, IUser } from "../store/configureStore";
 import { connect } from 'react-redux';
 import { searchPhones, getPhones } from '../catalog/catalogActions'
-import 'bootstrap/js/dist/collapse';
-import 'bootstrap/js/dist/dropdown';
+import 'bootstrap/dist/js/bootstrap';
 import '../style/app.css';
 import { userLogout } from '../user/userActions';
 
