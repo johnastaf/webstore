@@ -39,5 +39,5 @@ export interface IOrder {
 export interface IUser {
     isLogged: boolean;
     name: string;
-    id: string;
+    email: string;
 }

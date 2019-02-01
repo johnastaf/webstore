@@ -31,7 +31,7 @@ class UserLogin extends React.Component<MyProps, {}> {
             let user: IUser = {
                 isLogged: true,
                 name: userInfo.name,
-                id: userInfo.id
+                email: userInfo.email
             }
 
             this.props.userAutorized(user);

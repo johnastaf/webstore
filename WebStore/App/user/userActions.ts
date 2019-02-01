@@ -38,7 +38,7 @@ export const userLogin = (email: string, password: string) => (dispatch: any) =>
             let user: IUser = {
                 isLogged: true,
                 name: data.username,
-                id: "test_id"
+                email: data.email
             }
 
             dispatch(userAutorized(user));
@@ -66,12 +66,11 @@ export const validateToken = (token: string) => (dispatch: any) => {
         if (data != null) {
 
             console.log("TOKEN VALID: " + JSON.stringify(data));
-            sessionStorage.setItem("accessToken", data.access_token);
 
             let user: IUser = {
                 isLogged: true,
                 name: data.username,
-                id: "test_id"
+                email: data.email
             }
 
             dispatch(userAutorized(user));
@@ -104,7 +103,7 @@ export const userRegister = (name: string, email: string, password: string) => (
             let user: IUser = {
                 isLogged: true,
                 name: data.username,
-                id: "test_id"
+                email: data.email
             }
 
             dispatch(userAutorized(user));
@@ -113,3 +112,4 @@ export const userRegister = (name: string, email: string, password: string) => (
         console.log(ex);
     });
 };
+
