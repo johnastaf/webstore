@@ -82,7 +82,7 @@ class Header extends React.Component<MyProps, {}> {
                             </div>
 
                         }
-                        {!this.props.user.isLogged && <Link className="nav-link" to="/user">Login</Link>}
+                        {!this.props.user.isLogged && <Link className="nav-link" to="/login">Login</Link>}
                     </div>
                 </div>
             </nav>

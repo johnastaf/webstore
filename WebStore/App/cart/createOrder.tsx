@@ -28,6 +28,7 @@ export class CreateOrder extends React.Component<MyProps, {}> {
                 date: new Date(),
                 name: this.refs.nameOrder.value,
                 address: this.refs.addressOrder.value,
+                email: '',
                 items: this.props.items.map((it) => {
                     return { ...it, price: it.phone.price };
                 })

@@ -7,6 +7,7 @@ import Catalog from './catalog/catalog';
 import Admin from './admin/admin';
 import Order from './admin/order';
 import UserLogin from './user/userLogin';
+import UserRegister from './user/userRegister';
 
 export default class App extends React.Component {
     render() {
@@ -19,7 +20,8 @@ export default class App extends React.Component {
                             <Route path="/cart" component={Cart} />
                             <Route path="/admin" component={Admin} />
                             <Route path="/order" component={Order} />
-                            <Route path="/user" component={UserLogin} />
+                            <Route path="/login" component={UserLogin} />
+                            <Route path="/register" component={UserRegister} />
                             <Route path="/" component={Catalog} />
                         </Switch>
                     </main>

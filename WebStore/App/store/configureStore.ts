@@ -32,6 +32,7 @@ export interface IOrder {
     date: Date;
     name: string;
     address: string;
+    email: string;
     items: IPhoneInOrder[];
 }
 

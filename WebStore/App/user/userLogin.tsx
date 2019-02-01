@@ -1,12 +1,12 @@
 ﻿import * as React from "react";
 import { connect } from 'react-redux';
-import { IOrder, IStoreState, IUser } from "../store/configureStore";
+import { IUser } from "../store/configureStore";
 import { userLogin } from "./userActions";
 import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login'
 import { userAutorized } from '../user/userActions';
+import { Link } from "react-router-dom";
 
 interface MyProps {
-    orders: IOrder[];
     userLogin: (email: string, password: string) => void;
     userAutorized: (user: IUser) => void;
 }
@@ -40,16 +40,16 @@ class UserLogin extends React.Component<MyProps, {}> {
     render() {
         return (
             <div className="container">
-                <div className="card">
-                    <article className="card-body">
-                        <a href="" className="float-right btn btn-outline-primary">Sign up</a>
+                <div className="card bg-light">
+                    <article className="card-body mx-auto" style={{ maxWidth: '400px' }}>
+                        <Link to="/register" className="float-right btn btn-outline-primary">Sign up</Link>
                         <h4 className="card-title mb-4 mt-1">Sign in</h4>
                         <p>
                             <FacebookLogin
                                 appId="231121177769691"
                                 fields="name,email"
                                 callback={this.responseFacebook}
-                                cssClass="btn btn-block btn-outline-primary fab "
+                                cssClass="btn btn-block btn-outline-primary fab"
                                 textButton="    Login via facebook"
                                 icon="fa-facebook-f"
                             />
@@ -80,11 +80,6 @@ class UserLogin extends React.Component<MyProps, {}> {
     }
 };
 
-let mapProps = (state: IStoreState) => {
-    return {
-        orders: state.admin.orders
-    }
-}
 
 const mapDispatchToProps = (dispatch: any) => ({
     userLogin: (email: string, password: string) => dispatch(userLogin(email, password)),
@@ -92,4 +87,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 
-export default connect(mapProps, mapDispatchToProps)(UserLogin) 
+export default connect(null, mapDispatchToProps)(UserLogin) 

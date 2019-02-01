@@ -15,22 +15,15 @@ namespace WebStore.Controllers
     [Route("api/User")]
     public class UserController : Controller
     {
-        public class LoginPassword
+        private readonly WebStoreContext _context;
 
+        public UserController(WebStoreContext context)
         {
-            public string email { get; set; }
-            public string password { get; set; }
+            _context = context;
         }
 
-        private List<User> people = new List<User>
-        {
-            new User {Email="111", Name="John", Password="111", Role = "admin" },
-            new User { Email="222", Name="Nikki", Password="222", Role = "user" }
-        };
-
-
         [HttpPost("[action]")]
-        public IActionResult Token([FromBody]LoginPassword model)
+        public IActionResult Token([FromBody]Login model)
         {
             var identity = GetIdentity(model.email, model.password);
             if (identity == null)
@@ -49,25 +42,53 @@ namespace WebStore.Controllers
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var response = new { access_token = encodedJwt, username = identity.Name };
+            var response = new { access_token = encodedJwt, username = identity.Name, email = identity.FindFirst("email").Value };
 
 
             return Ok(JsonConvert.SerializeObject(response));
         }
 
+        [HttpPost("[action]")]
+        public IActionResult Register([FromBody]Register model)
+        {
+            User person = _context.Users.FirstOrDefault(x => x.Email == model.Email);
+
+            if (person != null)
+            {
+                return BadRequest("Already exist");
+            }
+            else
+            {
+                User user = new User
+                {
+                    Name = model.Name,
+                    Email = model.Email,
+                    Password = model.Password,
+                    Role = "user"
+                };
+
+                _context.Users.Add(user);
+                _context.SaveChanges();
+
+                return this.Token(new Login { email = user.Email, password = user.Password });
+            }
+        }
+
         private ClaimsIdentity GetIdentity(string email, string password)
         {
-            User person = people.FirstOrDefault(x => x.Email == email && x.Password == password);
+            User person = _context.Users.FirstOrDefault(x => x.Email == email && x.Password == password);
+
             if (person != null)
             {
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, person.Name),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, person.Role)
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, person.Role),
+                    new Claim("email", person.Email)
                 };
-                ClaimsIdentity claimsIdentity =
-                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
+
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
                 return claimsIdentity;
             }
 
