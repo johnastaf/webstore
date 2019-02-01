@@ -44,8 +44,7 @@ namespace WebStore.Controllers
 
             var response = new { access_token = encodedJwt, username = identity.Name, email = identity.FindFirst("email").Value };
 
-
-            return Ok(JsonConvert.SerializeObject(response));
+            return Ok(response);
         }
 
         [HttpPost("[action]")]
@@ -72,6 +71,19 @@ namespace WebStore.Controllers
 
                 return this.Token(new Login { email = user.Email, password = user.Password });
             }
+        }
+
+        [HttpPost("[action]")]
+        public IActionResult ValidateToken([FromBody]TokenModel token)
+        {
+            var jwtToken = new JwtSecurityToken(token.Token);
+
+            var response = new {
+                username = jwtToken.Claims.FirstOrDefault(t => t.Type == ClaimsIdentity.DefaultNameClaimType).Value,
+                email = jwtToken.Claims.FirstOrDefault(t => t.Type == "email").Value
+            };
+
+            return Ok(response);
         }
 
         private ClaimsIdentity GetIdentity(string email, string password)

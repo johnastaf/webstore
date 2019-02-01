@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { searchPhones, getPhones } from '../catalog/catalogActions'
 import 'bootstrap/dist/js/bootstrap';
 import '../style/app.css';
-import { userLogout } from '../user/userActions';
+import { userLogout, validateToken } from '../user/userActions';
 
 
 interface MyProps {
@@ -14,6 +14,7 @@ interface MyProps {
     searchPhones: (query: string) => void;
     getPhones: () => void;
     userLogout: () => void;
+    validateToken: (token: string) => void;
 }
 
 class Header extends React.Component<MyProps, {}> {
@@ -23,6 +24,11 @@ class Header extends React.Component<MyProps, {}> {
 
     componentDidMount() {
         this.props.getPhones();
+
+        console.log("TOKEN: ----> " + sessionStorage.getItem("accessToken"));
+        if (sessionStorage.getItem("accessToken") != null) {
+            this.props.validateToken(sessionStorage.getItem("accessToken"));
+        }
     }
 
     logout = () => {
@@ -100,7 +106,8 @@ let mapProps = (state: IStoreState) => {
 const mapDispatchToProps = (dispatch: any) => ({
     searchPhones: (query: string) => dispatch(searchPhones(query)),
     getPhones: () => dispatch(getPhones()),
-    userLogout: () => dispatch(userLogout())
+    userLogout: () => dispatch(userLogout()),
+    validateToken: (token: string) => dispatch(validateToken(token))
 });
 
 export default connect(mapProps, mapDispatchToProps)(Header) 

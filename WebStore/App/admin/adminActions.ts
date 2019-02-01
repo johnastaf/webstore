@@ -40,12 +40,15 @@ export const createPhone = (name: string, price: number) => (dispatch: any) => {
         },
         body: JSON.stringify({ "name": name, "price": price, "image": null, show: false })
     }).then((response: any) => {
+        if (!response.ok) {
+            toastr.error('WebStore', response.statusText);
+        }
         return response.json()
-    }).then((data: any) => {
+    }).then(() => {
         // TODO : change to get from reducer
         dispatch(getPhones());
     }).catch((ex) => {
-        toastr.error('WebStore', ex);
+        console.log(JSON.stringify(ex));
     });
 };
 
@@ -75,7 +78,7 @@ export const updatePhone = (id: number, name: string, price: number) => (dispatc
         body: JSON.stringify({ "id": id, "name": name, "price": price, "image": null })
     }).then((response: any) => {
         return response.json()
-        }).then((data: any) => {
+    }).then((data: any) => {
         //TODO: update phone in store, not need get phones from server again
         dispatch(selectPhone(null));
         dispatch(getPhones());

@@ -30,16 +30,47 @@ export const userLogin = (email: string, password: string) => (dispatch: any) =>
             return response.json();
         }
     }).then((data: any) => {
-        let jsonData: any = JSON.parse(data);
+        if (data != null && data.access_token != null) {
 
-        if (jsonData != null && jsonData.access_token != null) {
-
-            console.log("USER: " + JSON.stringify(jsonData));
-            sessionStorage.setItem("accessToken", jsonData.access_token);
+            console.log("USER: " + JSON.stringify(data));
+            sessionStorage.setItem("accessToken", data.access_token);
 
             let user: IUser = {
                 isLogged: true,
-                name: jsonData.username,
+                name: data.username,
+                id: "test_id"
+            }
+
+            dispatch(userAutorized(user));
+        }
+    }).catch((ex) => {
+        console.log(ex);
+    });
+};
+
+export const validateToken = (token: string) => (dispatch: any) => {
+    fetch('api/User/ValidateToken', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({ "token": token })
+    }).then((response: any) => {
+        if (!response.ok) {
+            toastr.error('WebStore', response.statusText);
+        } else {
+            return response.json();
+        }
+    }).then((data: any) => {
+        if (data != null) {
+
+            console.log("TOKEN VALID: " + JSON.stringify(data));
+            sessionStorage.setItem("accessToken", data.access_token);
+
+            let user: IUser = {
+                isLogged: true,
+                name: data.username,
                 id: "test_id"
             }
 
@@ -65,16 +96,14 @@ export const userRegister = (name: string, email: string, password: string) => (
             return response.json();
         }
     }).then((data: any) => {
-        let jsonData: any = JSON.parse(data);
+        if (data != null && data.access_token != null) {
 
-        if (jsonData != null && jsonData.access_token != null) {
-
-            console.log("USER: " + JSON.stringify(jsonData));
-            sessionStorage.setItem("accessToken", jsonData.access_token);
+            console.log("USER CREATED: " + JSON.stringify(data));
+            sessionStorage.setItem("accessToken", data.access_token);
 
             let user: IUser = {
                 isLogged: true,
-                name: jsonData.username,
+                name: data.username,
                 id: "test_id"
             }
 
