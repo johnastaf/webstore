@@ -23,13 +23,8 @@ export const userLogin = (email: string, password: string) => (dispatch: any) =>
             'Accept': 'application/json',
         },
         body: JSON.stringify({ "email": email, "password": password })
-    }).then((response: any) => {
-        if (response.status === 400) {
-            toastr.error('WebStore', 'Wrong email or password.');
-        } else {
-            return response.json();
-        }
-    }).then((data: any) => {
+    }).then((response: any) => handleError(response)
+    ).then((data: any) => {
         if (data != null && data.access_token != null) {
 
             console.log("USER: " + JSON.stringify(data));
@@ -48,6 +43,16 @@ export const userLogin = (email: string, password: string) => (dispatch: any) =>
     });
 };
 
+let handleError = (response: any): Promise<any> => {
+    if (!response.ok) {
+        return response.json().then(function (text: any) {
+            toastr.error('WebStore', text);
+
+            return Promise.reject(text);
+        });
+    } else return response.json();
+}
+
 export const validateToken = (token: string) => (dispatch: any) => {
     fetch('api/User/ValidateToken', {
         method: 'POST',
@@ -56,13 +61,8 @@ export const validateToken = (token: string) => (dispatch: any) => {
             'Accept': 'application/json',
         },
         body: JSON.stringify({ "token": token })
-    }).then((response: any) => {
-        if (!response.ok) {
-            toastr.error('WebStore', response.statusText);
-        } else {
-            return response.json();
-        }
-    }).then((data: any) => {
+    }).then((response: any) => handleError(response)
+    ).then((data: any) => {
         if (data != null) {
 
             console.log("TOKEN VALID: " + JSON.stringify(data));
@@ -80,20 +80,23 @@ export const validateToken = (token: string) => (dispatch: any) => {
     });
 };
 
-export const userRegister = (name: string, email: string, password: string) => (dispatch: any) => {
+export const userRegister = (name: string, email: string, password: string, externalId?: string) => (dispatch: any) => {
     fetch('api/User/Register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        body: JSON.stringify({ "name": name, "email": email, "password": password })
+        body: JSON.stringify({ "name": name, "email": email, "password": password, "externalId": externalId })
     }).then((response: any) => {
-        if (response.status === 400) {
-            toastr.error('WebStore', 'User already exist.');
-        } else {
-            return response.json();
-        }
+        if (!response.ok) {
+            return response.json().then(function (text: any) {
+                toastr.error('WebStore', text);
+
+                return Promise.reject(text);
+            });
+        } else return response.json();
+
     }).then((data: any) => {
         if (data != null && data.access_token != null) {
 

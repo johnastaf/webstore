@@ -28,7 +28,7 @@ namespace WebStore.Controllers
             var identity = GetIdentity(model.email, model.password);
             if (identity == null)
             {
-                return BadRequest();
+                return BadRequest("Wrong user name or password");
             }
 
             var now = DateTime.UtcNow;
@@ -50,40 +50,53 @@ namespace WebStore.Controllers
         [HttpPost("[action]")]
         public IActionResult Register([FromBody]Register model)
         {
-            User person = _context.Users.FirstOrDefault(x => x.Email == model.Email);
-
-            if (person != null)
+            if (!String.IsNullOrWhiteSpace(model.ExternalId))
             {
-                return BadRequest("Already exist");
+                User person = _context.Users.FirstOrDefault(x => x.ExternalId == model.ExternalId);
+
+                if (person != null)
+                {
+                    return Token(new Login { email = person.Email, password = "" });
+                }
+                else
+                {
+                    return CreataUserAndReturnToken(model);
+                }
             }
             else
             {
-                User user = new User
+                User person = _context.Users.FirstOrDefault(x => x.Email == model.Email);
+
+                if (person != null)
                 {
-                    Name = model.Name,
-                    Email = model.Email,
-                    Password = model.Password,
-                    Role = "user"
-                };
-
-                _context.Users.Add(user);
-                _context.SaveChanges();
-
-                return this.Token(new Login { email = user.Email, password = user.Password });
+                    return BadRequest("User already exist.");
+                }
+                else
+                {
+                    return CreataUserAndReturnToken(model);
+                }
             }
         }
 
         [HttpPost("[action]")]
         public IActionResult ValidateToken([FromBody]TokenModel token)
         {
-            var jwtToken = new JwtSecurityToken(token.Token);
+            try
+            {
+                var jwtToken = new JwtSecurityToken(token.Token);
 
-            var response = new {
-                username = jwtToken.Claims.FirstOrDefault(t => t.Type == ClaimsIdentity.DefaultNameClaimType).Value,
-                email = jwtToken.Claims.FirstOrDefault(t => t.Type == "email").Value
-            };
+                var response = new
+                {
+                    username = jwtToken.Claims.FirstOrDefault(t => t.Type == ClaimsIdentity.DefaultNameClaimType).Value,
+                    email = jwtToken.Claims.FirstOrDefault(t => t.Type == "email").Value
+                };
 
-            return Ok(response);
+                return Ok(response);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest("Token is not valid.");
+            }
         }
 
         private ClaimsIdentity GetIdentity(string email, string password)
@@ -105,6 +118,24 @@ namespace WebStore.Controllers
             }
 
             return null;
+        }
+
+
+        private IActionResult CreataUserAndReturnToken(Register model)
+        {
+            User user = new User
+            {
+                Name = model.Name,
+                Email = model.Email,
+                Password = model.Password,
+                Role = "user",
+                ExternalId = model.ExternalId
+            };
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            return Token(new Login { email = user.Email, password = user.Password });
         }
     }
 }

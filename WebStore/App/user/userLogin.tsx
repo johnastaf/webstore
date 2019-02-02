@@ -1,14 +1,13 @@
 ﻿import * as React from "react";
 import { connect } from 'react-redux';
 import { IUser, IStoreState } from "../store/configureStore";
-import { userLogin } from "./userActions";
+import { userLogin, userRegister } from "./userActions";
 import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login'
-import { userAutorized } from '../user/userActions';
 import { Link } from "react-router-dom";
 
 interface MyProps {
+    userRegister: (name: string, email: string, password: string, extenalId: string) => void;
     userLogin: (email: string, password: string) => void;
-    userAutorized: (user: IUser) => void;
     user: IUser;
 }
 
@@ -23,18 +22,8 @@ class UserLogin extends React.Component<MyProps, {}> {
     }
 
     responseFacebook = (userInfo: ReactFacebookLoginInfo) => {
-        console.log((userInfo));
-
-        console.log(JSON.stringify(userInfo));
-
         if (userInfo.accessToken != null) {
-            let user: IUser = {
-                isLogged: true,
-                name: userInfo.name,
-                email: userInfo.email
-            }
-
-            this.props.userAutorized(user);
+            this.props.userRegister(userInfo.name, userInfo.email, "", userInfo.id);
         }
     }
 
@@ -91,7 +80,7 @@ let mapProps = (state: IStoreState) => {
 
 const mapDispatchToProps = (dispatch: any) => ({
     userLogin: (email: string, password: string) => dispatch(userLogin(email, password)),
-    userAutorized: (user: IUser) => dispatch(userAutorized(user)),
+    userRegister: (name: string, email: string, password: string, extenalId: string) => dispatch(userRegister(name, email, password, extenalId))
 });
 
 
