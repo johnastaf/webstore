@@ -44,7 +44,8 @@ export const userLogin = (email: string, password: string) => (dispatch: any) =>
             let user: IUser = {
                 isLogged: true,
                 name: data.username,
-                email: data.email
+                email: data.email,
+                role: data.role
             }
 
             dispatch(userAutorized(user));
@@ -71,7 +72,8 @@ export const validateToken = (token: string) => (dispatch: any) => {
             let user: IUser = {
                 isLogged: true,
                 name: data.username,
-                email: data.email
+                email: data.email,
+                role: data.role
             }
 
             dispatch(userAutorized(user));
@@ -99,7 +101,8 @@ export const userRegister = (name: string, email: string, password: string, exte
             let user: IUser = {
                 isLogged: true,
                 name: data.username,
-                email: data.email
+                email: data.email,
+                role: data.role
             }
 
             dispatch(userAutorized(user));

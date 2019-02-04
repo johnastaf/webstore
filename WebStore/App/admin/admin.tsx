@@ -33,7 +33,7 @@ class Admin extends React.Component<MyProps, {}> {
         });
 
         return (
-            this.props.user.isLogged === true
+            this.props.user.isLogged === true && this.props.user.role === "admin"
                 ? <div>
                     <CreatePhone createPhone={this.props.createPhone} />
                     {this.props.selectedItem != null && <UpdatePhone updatePhone={this.props.updatePhone} selectedItem={this.props.selectedItem} />}

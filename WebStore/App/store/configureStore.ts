@@ -40,4 +40,5 @@ export interface IUser {
     isLogged: boolean;
     name: string;
     email: string;
+    role: string;
 }

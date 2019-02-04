@@ -25,7 +25,6 @@ class Header extends React.Component<MyProps, {}> {
     componentDidMount() {
         this.props.getPhones();
 
-        console.log("TOKEN: ----> " + sessionStorage.getItem("accessToken"));
         if (sessionStorage.getItem("accessToken") != null) {
             this.props.validateToken(sessionStorage.getItem("accessToken"));
         }
@@ -53,7 +52,7 @@ class Header extends React.Component<MyProps, {}> {
                             <Link className="nav-link" to="/">Catalog</Link>
                         </li>
 
-                        {this.props.user.isLogged == true &&
+                        {this.props.user.isLogged == true && this.props.user.role === "admin" &&
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Admin

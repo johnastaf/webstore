@@ -1,4 +1,4 @@
-﻿import { CREATE_PHONE, GET_ORDERS_SUCCESS, SELECT_PHONE } from '../store/constants'
+﻿import { GET_ORDERS_SUCCESS, SELECT_PHONE } from '../store/constants'
 import "isomorphic-fetch"
 import { IPhone } from "../store/configureStore";
 import { fetch } from 'domain-task';
@@ -91,7 +91,7 @@ export const updatePhone = (id: number, name: string, price: number) => (dispatc
         body: JSON.stringify({ "id": id, "name": name, "price": price, "image": null })
     }).then((response: any) => {
         return response.json()
-    }).then((data: any) => {
+    }).then(() => {
         //TODO: update phone in store, not need get phones from server again
         dispatch(selectPhone(null));
         dispatch(getPhones());
@@ -108,8 +108,8 @@ export const showPhone = (id: number) => (dispatch: any) => {
             'Accept': 'application/json',
             'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken")
         }
-    }).then((response: any) => {
-        return response.json()
+    }).then(() => {
+        dispatch(getPhones());
     }).catch((ex) => {
         toastr.error('WebStore', ex);
     });

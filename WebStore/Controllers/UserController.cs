@@ -42,7 +42,7 @@ namespace WebStore.Controllers
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var response = new { access_token = encodedJwt, username = identity.Name, email = identity.FindFirst("email").Value };
+            var response = new { access_token = encodedJwt, username = identity.Name, email = identity.FindFirst("email").Value, role = identity.FindFirst(ClaimsIdentity.DefaultRoleClaimType).Value };
 
             return Ok(response);
         }

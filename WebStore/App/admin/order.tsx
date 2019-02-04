@@ -26,7 +26,7 @@ class Order extends React.Component<MyProps, {}> {
         });
 
         return (
-            this.props.user.isLogged === true
+            this.props.user.isLogged === true && this.props.user.role === "admin"
                 ? <ul className="list-group">
                     {orders}
                 </ul>

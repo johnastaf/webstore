@@ -6,7 +6,8 @@ const initialState: IUserState = {
     user: {
         isLogged: false,
         name: '',
-        email: ''
+        email: '',
+        role: ''
     }
 }
 
