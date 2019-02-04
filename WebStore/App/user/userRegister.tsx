@@ -30,7 +30,6 @@ class UserRegister extends React.Component<MyProps, {}> {
                     <article className="card-body mx-auto" style={{ maxWidth: '400px' }}>
                         <h4 className="card-title mt-3 text-center">Create Account</h4>
                         <hr />
-                        <form>
                             <div className="form-group input-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"> <i className="fa fa-user"></i> </span>
@@ -58,8 +57,6 @@ class UserRegister extends React.Component<MyProps, {}> {
                             </div>
 
                             <p className="text-center">Have an account? <Link to="/login">Log In</Link> </p>
-
-                        </form>
                     </article>
                 </div>
         );

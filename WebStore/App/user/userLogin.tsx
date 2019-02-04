@@ -47,7 +47,6 @@ class UserLogin extends React.Component<MyProps, {}> {
                                 />
                             </p>
                             <hr />
-                            <form>
                                 <div className="form-group">
                                     <input name="" ref="email" className="form-control" placeholder="Email" type="email" />
                                 </div>
@@ -57,14 +56,13 @@ class UserLogin extends React.Component<MyProps, {}> {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <button type="submit" className="btn btn-primary btn-block" onClick={this.login}>Login</button>
+                                            <button className="btn btn-primary btn-block" onClick={this.login}>Login</button>
                                         </div>
                                     </div>
                                     <div className="col-md-6 text-right">
                                         <a className="small" href="#">Forgot password?</a>
                                     </div>
                                 </div>
-                            </form>
                         </article>
                     </div>
                 </div>
