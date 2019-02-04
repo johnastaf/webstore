@@ -41,7 +41,7 @@ class Admin extends React.Component<MyProps, {}> {
                         {phones}
                     </ul >
                 </div >
-                : <Redirect to={{ pathname: '/user' }} />
+                : <Redirect to={{ pathname: '/login' }} />
         );
     }
 };

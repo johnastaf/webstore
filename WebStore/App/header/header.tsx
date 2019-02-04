@@ -82,7 +82,7 @@ class Header extends React.Component<MyProps, {}> {
                                     Hello, {this.props.user.name}
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <Link className="dropdown-item" to="/admin">My orders</Link>
+                                    <Link className="dropdown-item" to="/user">My orders</Link>
                                     <button className="dropdown-item" onClick={this.logout}>Logout</button>
                                 </div>
                             </div>

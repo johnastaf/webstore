@@ -1,6 +1,7 @@
 ﻿import { USER_AUTORIZED, USER_LOGOUT } from '../store/constants'
 import { IUser } from '../store/configureStore';
 import { toastr } from 'react-redux-toastr';
+import { receiveOrders } from '../admin/adminActions';
 
 export function userAutorized(user: IUser) {
     return {
@@ -13,6 +14,16 @@ export function userLogout() {
     return {
         type: USER_LOGOUT
     }
+}
+
+let handleError = (response: any): Promise<any> => {
+    if (!response.ok) {
+        return response.json().then(function (text: any) {
+            toastr.error('WebStore', text);
+
+            return Promise.reject(text);
+        });
+    } else return response.json();
 }
 
 export const userLogin = (email: string, password: string) => (dispatch: any) => {
@@ -42,16 +53,6 @@ export const userLogin = (email: string, password: string) => (dispatch: any) =>
         console.log(ex);
     });
 };
-
-let handleError = (response: any): Promise<any> => {
-    if (!response.ok) {
-        return response.json().then(function (text: any) {
-            toastr.error('WebStore', text);
-
-            return Promise.reject(text);
-        });
-    } else return response.json();
-}
 
 export const validateToken = (token: string) => (dispatch: any) => {
     fetch('api/User/ValidateToken', {
@@ -88,16 +89,8 @@ export const userRegister = (name: string, email: string, password: string, exte
             'Accept': 'application/json',
         },
         body: JSON.stringify({ "name": name, "email": email, "password": password, "externalId": externalId })
-    }).then((response: any) => {
-        if (!response.ok) {
-            return response.json().then(function (text: any) {
-                toastr.error('WebStore', text);
-
-                return Promise.reject(text);
-            });
-        } else return response.json();
-
-    }).then((data: any) => {
+    }).then((response: any) => handleError(response)
+    ).then((data: any) => {
         if (data != null && data.access_token != null) {
 
             console.log("USER CREATED: " + JSON.stringify(data));
@@ -116,3 +109,19 @@ export const userRegister = (name: string, email: string, password: string, exte
     });
 };
 
+export const getUserOrders = (email: string) => (dispatch: any) => {
+    fetch('/api/Order/GetUserOrders/' + email, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken")
+        },
+    }).then((response: any) => {
+        return response.json()
+    }).then((data: any) => {
+        dispatch(receiveOrders(data))
+    }).catch((ex) => {
+        toastr.error('WebStore', ex);
+    });
+};

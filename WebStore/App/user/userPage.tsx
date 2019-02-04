@@ -1,21 +1,21 @@
 ﻿import * as React from "react";
 import { connect } from 'react-redux';
-import { getOrders } from './adminActions'
+import { getUserOrders } from './userActions'
 import { IOrder, IStoreState, IUser } from "../store/configureStore";
-import { OrderItem } from "./orderItem";
+import { OrderItem } from "../admin/orderItem";
 import { Redirect } from "react-router";
 
 
 interface MyProps {
     orders: IOrder[];
-    getOrders: () => void;
+    getUserOrders: (email: string) => void;
     user: IUser;
 }
 
-class Order extends React.Component<MyProps, {}> {
+class UserPage extends React.Component<MyProps, {}> {
 
     componentDidMount() {
-        this.props.getOrders();
+        this.props.getUserOrders(this.props.user.email);
     }
 
     render() {
@@ -43,8 +43,8 @@ let mapProps = (state: IStoreState) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-    getOrders: () => dispatch(getOrders())
+    getUserOrders: (email: string) => dispatch(getUserOrders(email))
 });
 
 
-export default connect(mapProps, mapDispatchToProps)(Order) 
+export default connect(mapProps, mapDispatchToProps)(UserPage) 

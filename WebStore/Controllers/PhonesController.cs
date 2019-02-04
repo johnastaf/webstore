@@ -39,14 +39,13 @@ namespace WebStore
             }
             catch (Exception ex)
             {
-                this.Log(ex.Message);
-
                 return new HttpResponseMessage(HttpStatusCode.NotFound);
             }
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
+        [Authorize]
         [HttpGet("[action]/{id}")]
         public HttpResponseMessage RemovePhone(string id)
         {
@@ -60,8 +59,6 @@ namespace WebStore
                 }
                 catch (Exception ex)
                 {
-                    this.Log(ex.Message);
-
                     return new HttpResponseMessage(HttpStatusCode.NotFound);
                 }
             }
@@ -69,7 +66,7 @@ namespace WebStore
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
-
+        [Authorize]
         [HttpPost("[action]")]
         public HttpResponseMessage UpdatePhone([FromBody]Phone phone)
         {
@@ -87,6 +84,7 @@ namespace WebStore
             return new HttpResponseMessage(HttpStatusCode.NotFound);
         }
 
+        [Authorize]
         [HttpGet("[action]/{id}")]
         public HttpResponseMessage ShowPhone(string id)
         {
@@ -101,16 +99,6 @@ namespace WebStore
             }
 
             return new HttpResponseMessage(HttpStatusCode.NotFound);
-        }
-
-        private void Log(string message)
-        {
-            string logPath = AppDomain.CurrentDomain.BaseDirectory + @"\logs\log.txt";
-
-            using (StreamWriter sw = System.IO.File.AppendText(logPath))
-            {
-                sw.WriteLine(message);
-            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿import * as React from "react";
-import { IPhoneInCart, IStoreState, IOrder } from "../store/configureStore";
+import { IPhoneInCart, IStoreState, IOrder, IUser } from "../store/configureStore";
 import { connect } from 'react-redux';
 import { CartItem } from "./cartItem";
 import { CreateOrder } from "./createOrder";
@@ -10,6 +10,7 @@ interface MyProps {
     removePhoneFromCart: (phone: IPhoneInCart) => void;
     createOrder: (order: IOrder) => void;
     cleanCart: () => void;
+    user: IUser;
 }
 
 
@@ -31,8 +32,8 @@ class Cart extends React.Component<MyProps, {}> {
                 </ul>
                 <br />
                 {this.props.cart.length > 0 && <div>Total: {total}$</div>}
-                <br/>
-                {this.props.cart.length > 0 && <CreateOrder items={this.props.cart} createOrder={this.props.createOrder} cleanCart={this.props.cleanCart} />}
+                <br />
+                {this.props.cart.length > 0 && <CreateOrder user={this.props.user} items={this.props.cart} createOrder={this.props.createOrder} cleanCart={this.props.cleanCart} />}
                 {this.props.cart.length ==  0 && "The cart is empty"}
             </div>
         );
@@ -41,7 +42,8 @@ class Cart extends React.Component<MyProps, {}> {
 
 let mapProps = (state: IStoreState) => {
     return {
-        cart: state.cart.cart
+        cart: state.cart.cart,
+        user: state.user.user
     }
 }
 

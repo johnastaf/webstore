@@ -1,11 +1,12 @@
 ﻿import * as React from "react";
-import { IPhoneInCart, IOrder } from "../store/configureStore";
+import { IPhoneInCart, IOrder, IUser } from "../store/configureStore";
 import '../style/app.css'
 
 interface MyProps {
     items: IPhoneInCart[];
     createOrder: (order: IOrder) => void;
     cleanCart: () => void;
+    user: IUser;
 }
 
 export class CreateOrder extends React.Component<MyProps, {}> {
@@ -13,6 +14,10 @@ export class CreateOrder extends React.Component<MyProps, {}> {
         nameOrder: HTMLInputElement;
         addressOrder: HTMLInputElement;
     };
+
+    componentDidMount() {
+        this.refs.nameOrder.value = this.props.user.name;
+    }
 
     createOrder = () => {
         this.refs.nameOrder.classList.remove('required-field');
@@ -28,7 +33,7 @@ export class CreateOrder extends React.Component<MyProps, {}> {
                 date: new Date(),
                 name: this.refs.nameOrder.value,
                 address: this.refs.addressOrder.value,
-                email: '',
+                email: this.props.user.email,
                 items: this.props.items.map((it) => {
                     return { ...it, price: it.phone.price };
                 })

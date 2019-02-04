@@ -1,5 +1,4 @@
 ﻿import * as React from "react";
-import * as ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './header/header';
 import Cart from './cart/cart';
@@ -8,6 +7,7 @@ import Admin from './admin/admin';
 import Order from './admin/order';
 import UserLogin from './user/userLogin';
 import UserRegister from './user/userRegister';
+import UserPage from './user/userPage';
 
 export default class App extends React.Component {
     render() {
@@ -22,6 +22,7 @@ export default class App extends React.Component {
                             <Route path="/order" component={Order} />
                             <Route path="/login" component={UserLogin} />
                             <Route path="/register" component={UserRegister} />
+                            <Route path="/user" component={UserPage} />
                             <Route path="/" component={Catalog} />
                         </Switch>
                     </main>

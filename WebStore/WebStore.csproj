@@ -32,6 +32,7 @@
     <None Remove="App\style\app.css" />
     <None Remove="App\user\userActions.ts" />
     <None Remove="App\user\userLogin.tsx" />
+    <None Remove="App\user\userPage.tsx" />
     <None Remove="App\user\userReducer.ts" />
     <None Remove="App\user\userRegister.tsx" />
   </ItemGroup>
@@ -77,6 +78,7 @@
     <TypeScriptCompile Include="App\style\app.css" />
     <TypeScriptCompile Include="App\user\userActions.ts" />
     <TypeScriptCompile Include="App\user\userLogin.tsx" />
+    <TypeScriptCompile Include="App\user\userPage.tsx" />
     <TypeScriptCompile Include="App\user\userReducer.ts" />
     <TypeScriptCompile Include="App\user\userRegister.tsx" />
   </ItemGroup>

@@ -6,6 +6,7 @@ using WebStore.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Http;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebStore
 {
@@ -20,6 +21,7 @@ namespace WebStore
             _context = context;
         }
 
+        [Authorize]
         [HttpGet("[action]")]
         public List<Order> GetOrders()
         {
@@ -40,6 +42,15 @@ namespace WebStore
             _context.SaveChanges();
 
             return new HttpResponseMessage(HttpStatusCode.OK);
+        }
+
+        [Authorize]
+        [HttpGet("[action]/{email}")]
+        public List<Order> GetUserOrders(string email)
+        {
+            var orders = _context.Orders.Where( o => o.Email == email).Include(order => order.Items).ThenInclude(item => item.Phone).ToList();
+
+            return orders;
         }
     }
 }
