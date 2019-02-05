@@ -24,6 +24,7 @@
     <None Remove="App\catalog\catalogActions.ts" />
     <None Remove="App\catalog\catalogItem.tsx" />
     <None Remove="App\catalog\catalogReducer.ts" />
+    <None Remove="App\catalog\search.tsx" />
     <None Remove="App\header\header.tsx" />
     <None Remove="App\index.tsx" />
     <None Remove="App\store\configureStore.ts" />
@@ -70,6 +71,7 @@
     <TypeScriptCompile Include="App\catalog\catalogActions.ts" />
     <TypeScriptCompile Include="App\catalog\catalogReducer.ts" />
     <TypeScriptCompile Include="App\catalog\catalogItem.tsx" />
+    <TypeScriptCompile Include="App\catalog\search.tsx" />
     <TypeScriptCompile Include="App\header\header.tsx" />
     <TypeScriptCompile Include="App\index.tsx" />
     <TypeScriptCompile Include="App\store\configureStore.ts" />

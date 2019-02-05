@@ -1,12 +1,12 @@
 ﻿import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { IStoreState, IUser } from "../store/configureStore";
 import { connect } from 'react-redux';
 import { searchPhones, getPhones } from '../catalog/catalogActions'
 import 'bootstrap/dist/js/bootstrap';
 import '../style/app.css';
 import { userLogout, validateToken } from '../user/userActions';
-
+import { withRouter } from "react-router-dom";
 
 interface MyProps {
     totalCount: number;
@@ -17,7 +17,7 @@ interface MyProps {
     validateToken: (token: string) => void;
 }
 
-class Header extends React.Component<MyProps, {}> {
+class Header extends React.Component<MyProps & RouteComponentProps, {}> {
     public refs: {
         searchText: HTMLInputElement;
     };
@@ -36,6 +36,7 @@ class Header extends React.Component<MyProps, {}> {
 
     searchPhones = () => {
         this.props.searchPhones(this.refs.searchText.value);
+        this.props.history.push('/search');
     }
 
     render() {
@@ -109,4 +110,5 @@ const mapDispatchToProps = (dispatch: any) => ({
     validateToken: (token: string) => dispatch(validateToken(token))
 });
 
-export default connect(mapProps, mapDispatchToProps)(Header) 
+
+export default withRouter(connect(mapProps, mapDispatchToProps)(Header)) 

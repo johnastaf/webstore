@@ -88,7 +88,8 @@ namespace WebStore.Controllers
                 var response = new
                 {
                     username = jwtToken.Claims.FirstOrDefault(t => t.Type == ClaimsIdentity.DefaultNameClaimType).Value,
-                    email = jwtToken.Claims.FirstOrDefault(t => t.Type == "email").Value
+                    email = jwtToken.Claims.FirstOrDefault(t => t.Type == "email").Value,
+                    role = jwtToken.Claims.FirstOrDefault(t => t.Type == ClaimsIdentity.DefaultRoleClaimType).Value
                 };
 
                 return Ok(response);

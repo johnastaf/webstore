@@ -11,7 +11,7 @@ export class OrderItem extends React.Component<MyProps, {}> {
         let phonesInOrder = this.props.order.items.map(item => {
             return (
                 <div className="list-group-item" key={item.phone.id}>
-                    Model: {item.phone.name} Price: {item.price} Quantity: {item.quantity}
+                    <b>Model: {item.phone.name}</b> \ Price: {item.price} \ Quantity: {item.quantity}
                 </div>
             );
         });

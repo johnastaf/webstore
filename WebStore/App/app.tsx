@@ -8,6 +8,7 @@ import Order from './admin/order';
 import UserLogin from './user/userLogin';
 import UserRegister from './user/userRegister';
 import UserPage from './user/userPage';
+import Search from './catalog/search';
 
 export default class App extends React.Component {
     render() {
@@ -23,6 +24,7 @@ export default class App extends React.Component {
                             <Route path="/login" component={UserLogin} />
                             <Route path="/register" component={UserRegister} />
                             <Route path="/user" component={UserPage} />
+                            <Route path="/search" component={Search} />
                             <Route path="/" component={Catalog} />
                         </Switch>
                     </main>
