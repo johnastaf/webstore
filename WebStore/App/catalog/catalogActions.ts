@@ -17,11 +17,20 @@ export function searchPhones(query: string) {
     }
 }
 
+let handleError = (response: any): Promise<any> => {
+    if (!response.ok) {
+        return response.json().then(function (text: any) {
+            toastr.error('WebStore', text);
+
+            return Promise.reject(text);
+        });
+    } else return response.json();
+}
+
 export const getPhones = () => (dispatch: any) => {
     fetch('/api/Phones/GetPhones')
-        .then((response: any) => {
-            return response.json()
-        }).then((data: any) => {
+        .then((response: any) => handleError(response)
+        ).then((data: any) => {
             dispatch(receivePhones(data))
         }).catch((ex) => {
             toastr.error('WebStore', ex);

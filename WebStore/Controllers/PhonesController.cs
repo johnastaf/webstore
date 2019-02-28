@@ -23,9 +23,16 @@ namespace WebStore
         }
 
         [HttpGet("[action]")]
-        public List<Phone> GetPhones()
+        public IActionResult GetPhones()
         {
-            return _context.Phones.ToList();
+            try
+            {
+                return Ok(_context.Phones.ToList());
+            }
+            catch(Exception ex)
+            {
+                return  BadRequest(ex.Message);
+            }
         }
 
         [Authorize]

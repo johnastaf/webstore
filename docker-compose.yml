@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  webstore:
+    build:
+      context: ./WebStore
+    ports:
+      - 5000:80
+  proxy:
+    image: nginx:latest
+    volumes:
+      - /c/Users/Public/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
